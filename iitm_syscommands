@@ -2,3 +2,27 @@
 from ppt
 - man find
 - find $HOME -print
+- find $HOME -print | wc -l
+  find: '/home/webmaster/kat1': Permission denied
+  45
+- find $HOME -print -mtime -2 - print        (last two days edited file)
+
+- find $HOME -print -mtime +30 - print       (more than month back modified)
+- find /usr -type d -name  'man*' -print     (find directory which start with man)
+- find /usr -type d -name  'man?' -print     (find directory which start with man after that only one character)
+
+
+- find . -size +10M -print                   (current dir more than 10 mb file size)
+- find . -size +200M -print -exec ls -lsh {} \;  (file with size print)
+- find . -name '*.jpg' -exec ls -sh {} \;        (pattern match and exec command ls -sh)
+
+- cp -r /var/log logfiles
+- du sh   (show the size)
+- ls lR   (recursively shown files)
+- tar -cvf logfiles.tar logfiles/        (bundle all files)
+- ls -l (check the size)
+- gzip logfiles.tar
+- ls -lh logfiles.tar.gz
+
+
+
