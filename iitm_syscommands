@@ -1,0 +1,4 @@
+### week 6 ### lec 1 ### Some Command line Utilities
+from ppt
+- man find
+- find $HOME -print
