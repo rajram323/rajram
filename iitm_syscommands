@@ -13,16 +13,71 @@ from ppt
 
 
 - find . -size +10M -print                   (current dir more than 10 mb file size)
-- find . -size +200M -print -exec ls -lsh {} \;  (file with size print)
+- find . -size +200M -print -exec ls -sh {} \;  (file with size print)
 - find . -name '*.jpg' -exec ls -sh {} \;        (pattern match and exec command ls -sh)
 
 - cp -r /var/log logfiles
 - du sh   (show the size)
 - ls lR   (recursively shown files)
 - tar -cvf logfiles.tar logfiles/        (bundle all files)
-- ls -l (check the size)
+- ls -l (check the size)  23mb
 - gzip logfiles.tar
 - ls -lh logfiles.tar.gz
+
+- gunzip logfiles.tar.gz
+- ls -lsh logfiles.tar  460mb
+
+- bzip2 logfiles.tar
+- ls -lh logifiles.tar.bz2
+- bzip2 -d logfiles.tar.bz2
+- compress logfiles.tar
+- ls -lh logfiles.tar.c
+
+- ls
+- rm -rf logfiles
+- uncompress logfiles.tar.Z
+- tar -xvf logfiles.tar
+- ls -l
+- du -sh logfiles
+
+- more make.file
+ BACKUPDIR=/home/gphani/backup
+DATESTAMP:=$(shell date +"%Y-%m-%d_%H.%M")
+TARBALL=BACKUP_$(DATESTAMP).tar
+
+backup: file1 file2
+        @echo "Backing up file1 file2 to $(DATESTAMP)"
+        TAR -cvf $(TARBALL) file1 file2
+        @ls -l $(TARBALL)
+        MV $(TARBALL) $(BACKUPDIR)
+
+- mkdir backup
+- touch file1
+- touch file2
+- cp logfiles/ 
+- ls -l logfiles/dmesg
+- cp logfiles/dmesg file1
+- cp logfiles/dmesg file2
+
+- make -f make.file backup
+- ls -l backup
+- date
+- make -f make.file backup
+- ls >> file1
+- make -f make.file backup
+- ls -l backup/
+
+
+### week 6 ### lec 2 ### Overview of shell scripts
+from ppt
+
+
+
+
+
+
+
+
 
 
 
