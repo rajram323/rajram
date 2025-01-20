@@ -1,0 +1,45 @@
+### week 1 ###
+### w1-lec 1 ###
+- pwd
+- ls
+- ps
+- uname
+
+ctrl + l = clear screen
+ctrl + d = exit
+
+user@machine:~ ls -a
+
+- ls -a
+- ls -l
+- man ls
+- man 1 ls 
+(command option argument)
+
+page section copy from ppt
+file system hierarchy copy from ppt
+
+- cd ..
+- cd
+- cd /
+
+each folder contain copy ppt
+in /dev
+brw - block
+crw - char wise
+
+/lib
+version file
+
+
+
+
+
+
+
+
+
+
+
+
+copy from ppt
