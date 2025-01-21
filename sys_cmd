@@ -124,6 +124,138 @@ g-group
 - cp from ppt
   
 
+### w1-lec 3 ###
+- cd ///usr///bin
+
+ls cmnd from ppt
+
+- ls l level1
+- ls ld level1 (not inside dir)
+- ls -ldi level1
+
+- ls level1 ldi
+- ls -d level1 -li  (any form work)
+
+- man ls
+- ls -l --directory --inode
+
+know file better ppt
+
+- cd/etc
+- ls -l profile
+- less profile  (q to come out)
+
+- cat profile (can not move back and forth - not good for big file)
+
+- more profile (page by page)
+
+- head profile (first 10 line)
+- head -n 5 profile
+
+- tail profile
+
+- man wc
+- wc profile
+lines words size
+- wc -l profile
+
+- man which
+- whatis which
+
+- ls -l /usr/bin/less
+- ls -l /usr/bin/more
+
+- apropos who
+- man who
+- which appropos
+- whatis who
+
+- which appropos
+- which whatis
+- ls -l /usr/bin/apropos
+(symbolic link to what is - o/p diffrent)
+
+- man -k who (same o/p as appropos)
+
+- help (show reserve kwyword for shell)
+
+- info  (< - shift+,)
+
+- type type (shell bulitin not by os)
+- type ls
+- which ls
+- ls -l /usr/bin/ls  (executable)
+- file /usr/bin/ls  (ELF 64-bit from os)
+
+- type help  (bulitin)
+
+- alias ll='ls -l'
+- type ll  (alias)
+- unalias ll
+
+- alias
+- unalias l
+
+multiple argument
+
+- touch file1 file2 file3
+- mkdir mydir
+- cp file1 mydir
+- cp file1 file2  (ask permission)
+
+- rmdir level1 (non empty dir can not be removed)
+- rmdir -r mydir  (forcefully removed)
+
+ - cp mydir mydir2
+(mydir has two files - mydir is not created - after cmd mydor will be created with the two files of mydir)
+
+- mv mydir mydir3 (it only rename the dir there is no dir name mydir3)
+
+links
+
+- touch file1
+- ln -s file1 file2
+(separate i node)
+ - ln file1 file3
+(same inode and hard link count 2 - both file1,file3 2 count)
+
+file size
+- stat znew
+- du znew
+- du -h znew
+
+in-memory filesystem
+/proc
+/sys
+
+- cd /
+- ls -l
+(they are in memmory not in hard disk)
+proc - older system from kernet 2.6 \sys is used
+sys -
+- cd proc
+(showing 0 byte)
+- less cpuinfo
+- cat cpuinfo
+- cat version
+- uname -a
+- cat meminfo
+- frre
+- free h
+- cat partition
+- df
+- df -h
+
+(kcore shows huge no - theoritacally how much virtual memory it can handle)
+
+- cd sys/bus/usb/devices/1-1
+- less manufacturer
+- less product
+
+
+
+
+ 
 
 
 
@@ -134,4 +266,14 @@ g-group
 
 
 
-copy from ppt
+
+
+
+
+
+
+
+
+
+
+
