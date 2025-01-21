@@ -22,6 +22,7 @@ file system hierarchy copy from ppt
 - cd ..
 - cd
 - cd /
+- cd .
 
 each folder contain copy ppt
 in /dev
@@ -31,6 +32,97 @@ crw - char wise
 /lib
 version file
 
+
+### w1-lec 2 ###
+
+cp cmd from ppt
+- cd - (prev dir)
+- cd .
+- cd ~  (home dir)
+
+- date
+- date -R (RFC5322 standard - for email)
+- man date
+
+- cal 
+- cal aug 1947
+- cal 8 1947
+- cal Aug 1947
+
+- ncal
+- ncal aug 1947
+
+- free
+- free -h  (human readable)
+
+- groups (gphani sudo - super user)
+
+cp ppt
+-l details
+file types cp ppt blk,char file devices
+ls -i inode
+permission string
+
+- mkdir level1
+- chmod g-W level1
+- chmod g-X level1
+u-user
+g-group
+0-others
+- chmod o-X level1
+
+- chmod 700 leve1
+
+- touch file1
+- cp file1 file2
+- mv file2 ..
+
+- mv file2 file3a (mv used for both move file and rename file)
+- mv file1 "file one"
+
+-chmod 700 "file one"
+
+- rm "file one"
+- man rm
+- alias rm="rm -i"
+
+
+- ls -li
+- cd level1
+- ls -lia    (same inode no)
+
+- mkdir level2
+- cd level2
+- ls -lia  (inode no increase)
+
+- whoami
+(in root owner not match)
+(we are other)
+- cd /var/log
+(many file not readable by us)
+- less alternatives.log
+- chmod o+w alternative.log    (permission denied no exec permission)
+- less ubuntu-advantqage.log   (permission denied no read permission)
+- mkdir level1  (permission denied)
+- touch file1   (permission denied) 
+- cd unattended-upgrades (permission denied - not able to navigate to that folde)
+
+- cd /usr/bin
+- file znew
+- less znew
+
+- file zoom  (symbolic link - ZoomLauncher)
+- cd /opt/zoom
+- file ZoomLauncher (ELF - binary file)
+- less ZoomLauncher
+
+
+- ls -l
+- touch Desktop  (change timestamp)
+- ls-l
+
+- cp from ppt
+  
 
 
 
