@@ -1,0 +1,166 @@
+udemy - Learn GIT In depth with BitBucket- Practical work flows
+        by Rahul Shetty
+---
+
+in bitbucket how to create project? workspace? 
+
+- git clone
+- git config -g user.name <username>
+- git add ptests/  (all file will be added)
+
+- git commit -m "give message here"
+
+- git push origin master
+           <from where is copied> <which branch push>
+           (if no repo in site push) (try other repo and branch) (create repo in local and push)
+
+- git clean -f (clean untracked file from working directory)
+
+
+- git log              HEAD->master      
+                       (origin/master, origin/HEAD)
+
+repo settings-> repo permission
+                  project permission 
+                  how to add user or group?
+
+no workspace setting->new group
+                        add user to group
+                        user will get invitation
+workspace and repo level permission need to be given
+
+- git checkout -b f/b1        (create new branch)
+- git config credential.username "ashu"    (to change name)
+- git config --list
+
+- git reset                   (from stage to working)
+- git reset --soft HEAD~1
+                              (from commit to stage) - (content is there)
+- git reset --hard HEAD~1
+                              (from commit to stage) - (content is not there) - (after git status nothing to commit no file change in staging area)
+
+- git reflog
+- git push origin  f/b1      (branch created in local and push the branch)
+
+create pull request(go to pull req for both raiser and reviewer)
+comment addressed so that reviwer get mail
+
+- git push origin master -f
+back to master -pull
+add master commit to branch
+then merge with master in local
+in branch
+          git merge master
+
+- git checkout master
+- git pull
+- git checkout b1
+- git merge              / git rebase
+                         - git squash
+                         - git rebase -i HEAD~2 
+
+- git commit -amend      (merge file to last commit)
+- git show               (to see last commit changes)
+
+- git commit --ament -in "the new msg"      (change the last commit msg)
+
+from one branch to other branch  - commit copy
+
+
+- git checkoout b1
+- git log (select the commit encryption)
+- git checkout b2
+- git log
+- git cherry-pick
+                may be merge conflict
+                (see file location) go vscode refresh
+                (maven referesh)
+                <<<<< HEAP
+                        this code is in branch
+                >>>>> encyp
+                        this code in chery-pick
+
+- git status
+- git add .
+- git commit --cherypick encyp
+
+- git bisect (work on binary search algo)
+- git bisect start
+- git bisect bad encp
+- git bisect good encyp
+
+    git bisect bad  (the moved is commit bad)
+    -> bad -> this is cultprit
+    -> good also show changes  (good and bad are one below another)
+
+
+- git bisect reset (back to head)
+
+
+created branch in site
+- git fetch origin
+- git checkout b_4m_main_site
+
+go to the fault commit and create branch
+- git checkout encyp
+      (branch disconnect from head) - (detached head) - (if commit not should in history)
+- git checkout -b fix_branch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
