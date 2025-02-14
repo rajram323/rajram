@@ -105,6 +105,69 @@ go to the fault commit and create branch
 - git checkout encyp
       (branch disconnect from head) - (detached head) - (if commit not should in history)
 - git checkout -b fix_branch
+----------------------
+
+- git checkout feature/account
+        make chage in file1 but not stagged
+- get checkout feature/profile        |
+        this changes shows here       |>
+
+        which is not good
+        - git status
+        - git restore file1
+(so always staged in feature/account then move to feature/profile) -> when you move back to feature/account the changes are gone.
+
+- git stash 
+        save work (in local also no change will be there)
+- git stash pop
+- git diff
+- git blame f1 (every line is done by whome)
+
+
+- git revert encyp 
+        commit 
+        revert "chnage f1"
+        commit
+        change f1
+
+in branch permission:-
+        can not merge your code with failed builds(checkbox)
+
+- git fetch - copy file from remote but not merge
+- git pull - copy & merge code in local
+        f1 created in site b1
+        in local git b1
+        - git fetch        (not shown in vs code)
+        - git checkout origin/b1        |
+        (detached head)(now show in vs) |>
+
+        f2 created on site in b3
+        git pull origin b3
+
+- git tag t1 (create tag)
+- git tag    ( show all tag)
+
+- git tag -a v2.april -m "release date"
+             ( another way to create tag with msg)
+
+- git push --tags
+             (by default tag is attached with the last commit)
+- git tag v2.0 encyp
+              (to add tag in previous commit)
+
+- git checkout v2.0
+              (also can checkout code using tag also)
+
+- git clone (has link to origin repo)
+- git fork  (just copy of project no link to repo)
+        
+
+        
+
+
+
+
+
 
 
 
