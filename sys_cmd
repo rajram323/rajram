@@ -252,13 +252,19 @@ sys -
 - less manufacturer
 - less product
 
+### week 5 ###
+### w1-lec 3 ### https://www.youtube.com/watch?v=R9vnc8AdVUo&t=1s ###
+  /* all varibles show */
+- printenv
+- env
+- echo ${!HI*}         /* all varibles that start with Hi */
+       HISTCMD HISTCONTROL HISTFILE HISTFILESIZE HISTSIZE
 
-
-
- 
-
-
-
+- mydate=`date`       /* store mydate in mydate variable */
+- echo $mydate
+        Fri Mar 7 03:31:46 UTC 2025
+- echo ${#mydate}    /* # - count no of character in myvar */
+        28
 
 
 
