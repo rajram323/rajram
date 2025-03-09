@@ -355,6 +355,55 @@ MyFileName.SomethingElse.jpg
 -  echo ${MYVAR}
         77UI
 
+- declare +u MYVAR            /* remove upper case condition */
+- MYVAR="hello, world"
+- echo ${MYVAR}
+       hello, world
+
+-  today=`date`
+-  echo ${today}
+        Sun Mar 9 13:23:29 UTC 2025
+-  declare -r today                    /* var will be read only */
+-  today="hello world"
+          bash: today: readonly variable
+-  declare +r today                    /* + also can not chage read only var */
+          bash: declare: today: readonly variable
+
+-  declare -a arr                    /* declare an array */
+-  arr[0]=Sunday
+-  arr[1]=Monday
+-  echo ${arr[1]}
+          Monday
+-  arr[100]=LeapYearDay             /* any type of index can be created */
+-  echo ${#arr[@]}                  /* shows no of array elements */
+        3
+-  echo ${!arr[@]}                  /* shows all the indexes */
+        0 1 100
+-  unset 'arr[100]'                /* remove an array element */
+-  echo ${#arr[@]}
+        2
+-  echo ${!arr[@]}
+        0 1
+- myfiles=`ls`
+- echo ${#myfiles[@]} 
+       11
+- echo ${myfiles[1]}
+       Desktop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
