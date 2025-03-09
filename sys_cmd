@@ -265,17 +265,95 @@ sys -
         Fri Mar 7 03:31:46 UTC 2025
 - echo ${#mydate}    /* # - count no of character in myvar */
         28
+- echo $(myvar)      /* if variable is not defines then return 0 */
+        0
+- myvar=abcdefgh12345678  
+- echo ${myvar:3;4}      /* skip first 3 char then 4 char */
+        defg
+- echo ${myvar:-3:4}      /* from right 3 char from ther 4 char */
+        678
+- echo ${myvar:-3:2}
+      67
+- echo ${mydate:0:6}
+      Sunday
 
+- date +"%d %B %Y"
+      09 January 2022
+- echo ${mydate:6:10}
+      09 January 2022
 
+- myvar=MyFileName.SomethingElse.jpeg
+- echo ${myvar#*.}
+     SomethingElse.jpeg 
+- echo ${myvar##*.}  
+      .jpeg
+- echo ${myvar%.*}
+      MyFileName.SomethingElse
+- echo ${myvar%%.*}
+      MyFileName
+- echo ${myvar%%.*}.${myvar##*.} 
+      MyFileName.jpeg
 
+/* Replace character */
+myvar=MyFileName.SomethingElse.jpeg
 
+-  echo $myvar
+MyFileName.SomethingElse.jpeg       
+-  echo ${myvar/e/E}                  /* change first occurence of e */  
+MyFilEName.SomethingElse.jpeg
+-  echo ${myvar//e/E}                /* change all occurence of e */
+MyFilENamE.SomEthingElsE.jpEg
+-  echo ${myvar/#M/m}                /* change if first letter is M */
+myFileName.SomethingElse.jpeg
+-  echo ${myvar/%g/G}                /* change if last letter is g */
+MyFileName.SomethingElse.jpeG
+-  echo ${myvar/%jpeg/jpg}
+MyFileName.SomethingElse.jpg
 
+- myvar=MyjpegFile.Something.jpeg
+- myvar1= 'echo${myvar//jpeg/jpg}`
+- echo $myvar1
+        MyjpgFile.Something.jpg
 
+-  mydate=`date`
+-  echo $mydate
+        Sun Mar 9 12:17:29 UTC 2025
+-  echo ${mydate,}                   /* , first char change to small */
+        sun Mar 9 12:17:29 UTC 2025
+-  echo ${mydate,,}                  /* ,, all char change to small */
+        sun mar 9 12:17:29 utc 2025
+-  myvar=hello                       
+-  echo ${myvar^}                    /* ^ first char change to capital */ 
+        Hello
+-  echo ${myvar^^}                  /* ^^ first char change to capital */ 
+        HELLO
 
-
-
-
-
+-  declare -i mynum                /* only store integers */ 
+-  mynum=10
+-  echo ${mynum}
+        10
+-  mynum=hello
+-  echo ${mynum}                  /* if assign to other it will store 0 */ 
+        0
+-  declare -l myvar              /* only store lower case */
+-  myvar=hello
+-  echo ${myvar}
+        hello
+-  myvar=ZZDF
+-  echo ${myvar}                /* if uppercase stored then it turns into lower case */
+      zzdf
+-  declare -u MYVAR            /* only store upper case */
+-  MYVAR=helllo
+-  echo ${myvar}
+        zzdf
+-  echo ${MYVAR}              
+        HELLLO
+-  MYVAR=77
+-  echo ${MYVAR}
+        77
+-  MYVAR=77ui                  /* it can store also intiger apart from small case letter */
+-  echo ${MYVAR}
+        77UI
 
 
 
