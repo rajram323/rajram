@@ -253,8 +253,126 @@ sys -
 - less product
 
 ### week 5 ###
-### w1-lec 3 ### https://www.youtube.com/watch?v=R9vnc8AdVUo&t=1s ###
-  /* all varibles show */
+### w5-lec 1 ### https://www.youtube.com/watch?v=pPRge8Yxbso&t=4s ###
+
+from ppt echo
+ppt- frequently used
+ppt - special var
+ppt - process control
+ppt - exit codes
+ppt - flag set
+
+bash: man: command not found
+-  echo hello world            /* displat line test */
+		hello world
+-  echo hello                        world    /* does not take the space */
+		hello world
+-  echo "hello               world"          /* take space when inside double quote */
+		hello               world
+-  echo "hello       world'                  /* wait for same closing quote */
+		> some more input
+		> closing single quote'
+		> closing double quote"
+		
+		hello       world'
+		some more input
+		closing single quote'
+		closing double quote
+
+/* use of echo in program */
+- echo "------------------------------------------"
+- echo "Comments:                  "
+- echo now you enter the value of variable x
+
+-  echo $USERNAME
+		ubuntu	
+-  echo $USER
+		ubuntu
+
+-  echo '$USERNAME'              /* single quote not worked */
+		$USERNAME
+-  echo "User logged into the shell now is : $USER"    /* can be used with other sentence */
+        User logged into the shell now is : ubuntu
+
+-  echo $PWD
+		/home/ubuntu
+ 
+- echo $HOSTNAME
+       icme
+- cat /etc/hostname
+      icme
+
+-  echo "hostname is $HOSTNAME and user is $USER"
+		hostname is tryit and user is ubuntu
+
+-  echo "hostname is \$HOSTNAME and user is $USER"       /* / will not intepretate as env variable */
+		hostname is $HOSTNAME and user is ubuntu 
+
+- printenv
+- env
+- set            /* with function displayed */
+
+- man printenv
+- printenv HOME
+          /home/gphani
+-  date
+	  Tue Mar 11 02:28:22 UTC 2025
+-  date -R                      /* email date format with , to identify */
+	  Tue, 11 Mar 2025 02:28:31 +0000
+-  alias date='date -R'
+-  alias date                  /* alias date to see the alias format */
+	alias date='date -R'
+-  date
+	Tue, 11 Mar 2025 02:29:06 +0000
+-  which date                  /* which - where the file located */
+	/usr/bin/date
+-  cd /usr/bin          
+-  ./date                      /* go to location and execute file will show original format */
+	Tue Mar 11 02:30:15 UTC 2025
+- \date                        /* \ used to ignore alias */
+	Tue Mar 11 02:30:21 UTC 2025
+
+- echo $PATH            /* show all dir where it search for file to execute */
+
+- man ps
+-  echo $0
+	bash
+-  ksh
+-  echo $0
+	ksh
+-  echo $$
+	683
+-  ps                          /* show process this parent and child*/
+    PID TTY          TIME CMD
+    683 pts/1    00:00:00 bash
+    710 pts/1    00:00:00 ps
+
+-  ps --forest                /* show process this parent and child in readable format*/
+    PID TTY          TIME CMD
+    683 pts/1    00:00:00 bash
+    711 pts/1    00:00:00  \_ ps
+
+-  ps -f                      /* show process this parent and child with PPID*/
+UID          PID    PPID  C STIME TTY          TIME CMD
+ubuntu       683     682  0 02:27 pts/1    00:00:00 bash -i
+ubuntu       714     683  0 02:40 pts/1    00:00:00 ps -f
+
+-  ps -e                     /* show all process */     
+    702 ?        00:00:00 kworker/0:1-virtio_vsock
+    713 ?        00:00:00 kworker/u192:0-events_unbound
+    715 pts/1    00:00:00 ps
+
+-  ps -ef                   /* show all process with PPID*/  
+
+
+
+
+
+
+
+### w5-lec 3 ### https://www.youtube.com/watch?v=R9vnc8AdVUo&t=1s ###
+ 
+/* all varibles show */
 - printenv
 - env
 - echo ${!HI*}         /* all varibles that start with Hi */
