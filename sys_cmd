@@ -531,17 +531,17 @@ exit
 -  myvar=hello
 -  echo $myvar
 	hello
--  echo ${myvar:+ZZZ}
+-  echo ${myvar:+ZZZ}			/* if present set to ZZZ */
 	ZZZ
--  echo $myvar
-	hello
+-  echo $myvar				/* NEED TO CHECK LATER */
+	ZZZ
 -  unset myvar
 -  echo $myvar
 
--  echo ${myvar:-YYY}
+-  echo ${myvar:-YYY}			/* if not present set to ZZZ */
 	YYY
 -  echo $myvar  
-
+	YYY
 
 
 ### w5-lec 3 ### https://www.youtube.com/watch?v=R9vnc8AdVUo&t=1s ###
