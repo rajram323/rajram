@@ -364,9 +364,183 @@ ubuntu       714     683  0 02:40 pts/1    00:00:00 ps -f
 
 -  ps -ef                   /* show all process with PPID*/  
 
+### w5-lec 2 ### https://www.youtube.com/watch?v=QX5XElFRpck ###
+ppt - creation, inspection, modification, list...
+ppt - create a variable
+ppt - exporting a variable
+ppt - using variable values
+ppt - remove var
+ppt - test if var available
+ppt - not set
+ppt - default value
+ppt -  reset value
+ppt - list var
+ppt - length
+ppt - slice
+ppt - remove matching pattern
+ppt - keep matching
+ppt - replace pattern
+ppt - replace at start or end
+ppt - convert character
+ppt - resrticting var
+ppt - remove restrictions
+ppt - index array
+ppt - associative array
 
+- myvar=10
+- echo $myvar
+       10
+- 10myvar=11		/* car cannot start with number start with _ */
+	error
+- Myvar=11
+- echo $Myvar		/* var is case sensitive */
+	11
+- _var=13
+- echo $_var
+	13
 
+-  myvar=hello world
+		bash: world: command not found
+-  echo $?
+		127
+		
+-  myvar="hello world"
+-  echo $myvar
+		hello world
+-  unset myvar
+-  echo $myvar
 
+-  true
+-  echo $?
+	0
+-  false
+-  echo $?
+	1
+	
+-  [[ -v myvar ]];
+-  echo $?
+	0
+-  unset myvar
+-  [[ -v myvar ]];
+-  echo $?
+	1
+ -  echo $myvar			/* myvar does not exits */
+
+-  [[ -z ${myvar+x} ]]		/* check for var */
+-  echo $?			/* return 0 if not exists */
+	0
+-  myvar=10			/* declare var */
+-  [[ -z ${myvar+x} ]]
+-  echo $?			/* return 1 if exists */
+	1
+-  myvar=FileName
+-  echo $myvar
+		FileName
+-  echo "$myvar.txt"
+		FileName.txt
+-  echo "$myvar_.txt"		/* can not identify $myvar_ as variable */	
+-  echo "${myvar}_.txt"		/* therefore use {} */
+		FileName_.txt
+
+-  myvar=3.14
+-  echo $myvar
+	3.14
+-  bash				/* create child bash */
+-  ps --forest
+    PID TTY          TIME CMD
+    691 pts/1    00:00:00 bash
+    705 pts/1    00:00:00  \_ bash
+    711 pts/1    00:00:00      \_ ps
+-  echo $myvar			/* the var not available in child process */
+
+-  exit
+	exit
+-  ps --forest
+    PID TTY          TIME CMD
+    691 pts/1    00:00:00 bash
+    712 pts/1    00:00:00  \_ ps
+-  echo $myvar
+	3.14
+-  export myvar=3.14		/* export the var in child process */
+-  bash
+-  ps --forest
+    PID TTY          TIME CMD
+    691 pts/1    00:00:00 bash
+    714 pts/1    00:00:00  \_ bash
+    720 pts/1    00:00:00      \_ ps
+-  echo $myvar
+	3.14
+-  myvar=4.56			/* change export the var available in child process */
+-  echo $myvar
+	4.56
+-  exit
+	exit
+-  echo $myvar			/* but the var available is not changed in parent process */
+	3.14
+
+/* --- export from child process also not change the variable --- */ 
+
+-  export myvar=3.14
+-  echo $myvar
+	3.14
+-  bash
+-  ps --forest
+    PID TTY          TIME CMD
+    691 pts/1    00:00:00 bash
+    722 pts/1    00:00:00  \_ bash
+    728 pts/1    00:00:00      \_ ps
+-  echo $myvar
+	3.14
+-  export myvar=4.56		/* export from child process */
+-  echo $myvar			/* in child process it is change */
+	4.56
+-  exit
+exit
+-  ps --forest
+    PID TTY          TIME CMD
+    691 pts/1    00:00:00 bash
+    729 pts/1    00:00:00  \_ ps
+-  echo $myvar			/* in parent process it is not changed */	
+	3.14
+-  mydate=`date`		/* back quote to store date command resuld */
+-  echo $mydate
+	Wed Mar 12 04:06:39 UTC 2025	/* it is not dynamic */
+-  date
+	Wed Mar 12 04:06:48 UTC 2025 
+
+-  unset myvar
+-  echo $myvar
+
+-  echo ${myvar:-hello}			/* if not present show hello */	
+	hello
+-  echo ${myvar:-"my var is not set"}	/* if not present show string */	
+	my var is not set
+-  echo $myvar
+
+-  echo ${myvar:=hello}			/* if not present set the var */	
+	hello
+-  echo $myvar
+	hello
+-  echo ${myvar:=HELLO}			/* if already present not set the var */
+	hello
+-  echo $myvar
+	hello
+-  unset myvar
+-  echo ${myvar:?"my var is not set"}	/* if not present show string but more relatable way */
+	bash: myvar: my var is not set
+-  myvar=hello
+-  echo $myvar
+	hello
+-  echo ${myvar:+ZZZ}
+	ZZZ
+-  echo $myvar
+	hello
+-  unset myvar
+-  echo $myvar
+
+-  echo ${myvar:-YYY}
+	YYY
+-  echo $myvar  
 
 
 
