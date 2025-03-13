@@ -252,6 +252,243 @@ sys -
 - less manufacturer
 - less product
 
+### week 4 ###
+### w4-lec 1 ### https://www.youtube.com/watch?v=1y85iTaqq8Y ###
+
+ppt - POSIX standard
+ppt - Regex
+ppt - why regex
+ppt - usage
+ppt - special characters
+ppt - special char
+ppt - char class
+ppt - backreferences
+ppt - operator sequence
+ppt - ere operator precedence
+
+
+cat names.txt			/* create file */
+MM22B901 Mary Manickam
+ED22B902 Raman Singh
+ME22B903 Umair Ahmand
+CS22B904 Charles M. Sagayam
+EE22B906 Anu K. Jain
+NA22B906 Anupama Sridhar
+PH22B907 Vel Sankharan
+
+
+- grep Raman names.txt			/* search text in file */	
+	ED22B902 Raman Singh
+- grep 'Raman' names.txt		/* good habit */
+	ED22B902 Raman Singh
+- cat names.txt | grep 'ai'		/* search output from command */
+	MM22B901 Mary Manickam
+
+
+-  cat names.txt | grep 'S.n'
+	ED22B902 Raman Singh
+	PH22B907 Vel Sankharan
+-  cat names.txt | grep '.am'
+	MM22B901 Mary Manickam
+	ED22B902 Raman Singh
+	CS22B904 Charles M. Sagayam
+	NA22B906 Anupama Sridhar
+-  cat names.txt | grep '.am$'
+	MM22B901 Mary Manickam
+	CS22B904 Charles M. Sagayam
+-  cat names.txt | grep '\.'
+	CS22B904 Charles M. Sagayam
+	EE22B906 Anu K. Jain
+-  cat names.txt | grep '.\.'
+	CS22B904 Charles M. Sagayam
+	EE22B906 Anu K. Jain
+-  cat names.txt | grep '^M'
+	MM22B901 Mary Manickam
+	ME22B903 Umair Ahmand
+-  cat names.txt | grep '^e'
+-  cat names.txt | grep -i '^e'
+	ED22B902 Raman Singh
+	EE22B906 Anu K. Jain
+
+/* --- word boundar --- */
+
+-  cat names.txt | grep -i 'am'
+	MM22B901 Mary Manickam
+	ED22B902 Raman Singh
+	CS22B904 Charles M. Sagayam
+	NA22B906 Anupama Sridhar
+
+-  cat names.txt | grep -i 'an\b'
+	ED22B902 Raman Singh
+	PH22B907 Vel Sankharan
+-  cat names.txt | grep -i 'an$'
+	PH22B907 Vel Sankharan
+
+
+/* --- [] used for option --- */
+
+-  cat names.txt | grep -i 'M[ME]'
+	MM22B901 Mary Manickam
+	ME22B903 Umair Ahmand
+-  cat names.txt | grep -i '[ME]E'
+	ME22B903 Umair Ahmand
+	EE22B906 Anu K. Jain
+-  cat names.txt | grep -i 'S.*[mn]'
+	ED22B902 Raman Singh
+	CS22B904 Charles M. Sagayam
+	PH22B907 Vel Sankharan
+-  cat names.txt | grep -i '\bS.*[mn]'		/* see colour */
+	ED22B902 Raman Singh
+	CS22B904 Charles M. Sagayam
+	PH22B907 Vel Sankharan
+
+-  cat names.txt | grep -i '[aeiou]'
+	MM22B901 Mary Manickam
+	ED22B902 Raman Singh
+	ME22B903 Umair Ahmand
+	CS22B904 Charles M. Sagayam
+	EE22B906 Anu K. Jain
+	NA22B906 Anupama Sridhar
+	PH22B907 Vel Sankharan
+-  cat names.txt | grep -i '[aeiou][aeiou]'
+	ME22B903 Umair Ahmand
+	EE22B906 Anu K. Jain
+
+
+ -  cat names.txt | grep -i 'B90[5-7]'
+	EE22B906 Anu K. Jain
+	NA22B906 Anupama Sridhar
+	PH22B907 Vel Sankharan
+
+-  cat names.txt | grep '[M-Z][aeiou]'
+	MM22B901 Mary Manickam
+	ED22B902 Raman Singh
+	CS22B904 Charles M. Sagayam
+	PH22B907 Vel Sankharan
+
+
+-  cat names.txt | grep 'B90[5-7]'
+	EE22B906 Anu K. Jain
+	NA22B906 Anupama Sridhar
+	PH22B907 Vel Sankharan
+-  cat names.txt | grep 'B90[^5-7]'
+	MM22B901 Mary Manickam
+	ED22B902 Raman Singh
+	ME22B903 Umair Ahmand
+	CS22B904 Charles M. Sagayam
+
+
+/* --- pattern match no of times --- */
+-  cat names.txt | grep 'M\{2\}'
+	MM22B901 Mary Manickam
+-  cat names.txt | grep 'M\{1,2\}'
+	MM22B901 Mary Manickam
+	ME22B903 Umair Ahmand
+	CS22B904 Charles M. Sagayam
+
+
+-  cat names.txt | grep '\(ma\)'
+	ED22B902 Raman Singh
+	ME22B903 Umair Ahmand
+	NA22B906 Anupama Sridhar
+-  cat names.txt | grep '\(ma\).*\1'
+	ME22B903 Umair Ahmand
+-  cat names.txt | grep '\(.a\).*\1'
+	MM22B901 Mary Manickam
+	ME22B903 Umair Ahmand
+-  cat names.txt | grep '\(a.\).*\1'
+	PH22B907 Vel Sankharan
+	
+-  cat names.txt | grep '\(a.\)\{3\}'
+	CS22B904 Charles M. Sagayam
+-  cat names.txt | grep '\(a.\)\{2\}'
+	ED22B902 Raman Singh
+	CS22B904 Charles M. Sagayam
+	NA22B906 Anupama Sridhar
+	PH22B907 Vel Sankharan
+	
+-  cat names.txt | grep '\(a.\)\{2,3\}'
+	ED22B902 Raman Singh
+	CS22B904 Charles M. Sagayam
+	NA22B906 Anupama Sridhar
+	PH22B907 Vel Sankharan
+
+
+/* extended re */
+- cat names.txt | egrep 'M+'
+	MM22B901 Mary Manickam
+	ME22B903 Umair Ahmand
+	CS22B904 Charles M. Sagayam
+- cat names.txt | egrep '^M+'
+	MM22B901 Mary Manickam
+	ME22B903 Umair Ahmand
+- cat names.txt | egrep '^M*'
+	MM22B901 Mary Manickam
+	ED22B902 Raman Singh
+	ME22B903 Umair Ahmand
+	CS22B904 Charles M. Sagayam
+	EE22B906 Anu K. Jain
+	NA22B906 Anupama Sridhar
+	PH22B907 Vel Sankharan
+- cat names.txt | egrep '^M*a'
+- cat names.txt | egrep 'M*a'
+	MM22B901 Mary Manickam
+	ED22B902 Raman Singh
+	ME22B903 Umair Ahmand
+	CS22B904 Charles M. Sagayam
+	EE22B906 Anu K. Jain
+	NA22B906 Anupama Sridhar
+	PH22B907 Vel Sankharan
+
+-  cat names.txt | egrep 'M.*a'
+	MM22B901 Mary Manickam
+	ME22B903 Umair Ahmand
+	CS22B904 Charles M. Sagayam
+
+-  cat names.txt | egrep '(ma)+'
+	ED22B902 Raman Singh
+	ME22B903 Umair Ahmand
+	NA22B906 Anupama Sridhar
+-  cat names.txt | egrep '(ma)*'
+	MM22B901 Mary Manickam
+	ED22B902 Raman Singh
+	ME22B903 Umair Ahmand
+	CS22B904 Charles M. Sagayam
+	EE22B906 Anu K. Jain
+	NA22B906 Anupama Sridhar
+	PH22B907 Vel Sankharan
+
+-  cat names.txt | egrep '(ED|ME)'	/* ED or ME should match */
+	ED22B902 Raman Singh
+	ME22B903 Umair Ahmand
+-  cat names.txt | egrep '(Anu|Raman)'	/* Anu or Raman should match */
+	ED22B902 Raman Singh
+	EE22B906 Anu K. Jain
+	NA22B906 Anupama Sridhar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### week 5 ###
 ### w5-lec 1 ### https://www.youtube.com/watch?v=pPRge8Yxbso&t=4s ###
 
