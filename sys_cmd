@@ -465,15 +465,220 @@ PH22B907 Vel Sankharan
 	ED22B902 Raman Singh
 	EE22B906 Anu K. Jain
 	NA22B906 Anupama Sridhar
+### week 4 ###
+### w4-lec 2 ### https://www.youtube.com/watch?v=XQUJPRc-7zA&t=2s ###
+
+- man dpkg-query	/* list packages */
+- dpkg-query -W -f'${Section} ${binary:Package}\n'	 /*-W ifo about pkg   ${binary:Package}- name of pakg */
+	admin adduser
+	admin apparmor
+	admin apt
+
+-  dpkg-query -W -f'${Section} ${binary:Package}\n' | egrep ' .{4}'	/* 4 length */
+		admin adduser
+		admin apparmor
+		admin apt-utils
+		utils attr
+		admin base-files
+- dpkg-query -W -f'${Section} ${binary:Package}\n' | egrep ' .{4}$'	/* 4 length end of line */
+	utils attr
+	shells bash
+	utils cpio
+	shells dash
 
 
+-  dpkg-query -W -f'${Section} ${binary:Package}\n' | egrep '.{4}'	/* without space match from starting */
+	admin adduser
+	admin apparmor
+	admin apt
+
+-  dpkg-query -W -f'${Section} ${binary:Package}\n' | egrep ' g.{1,5}$'		/* start with ' g' and 1 or 5 long in end */
+	devel gcc
+	devel gcc-11
+	devel gcc-12
+
+- dpkg-query -W -f'${Section} ${binary:Package}\n' | egrep 'math' 		/* math packages  */
+- dpkg-query -W -f'${Section} ${binary:Package}\n' | egrep '^math' 		/* only math section math packages  */
+- dpkg-query -W -f'${Section} ${binary:Package}\n' | egrep ' kd.*$'            /* kd packages with end word start with kd  */                                 
+
+- cat chartypes.txt
+hello : alphabetical stuff :5g
+l : start lower end upper : H
+L : start upper end lower : h
+5g : alpha numeric stuff : 42
+42 : solution yo everything : 
+ : start with control c end with dot : .
+
+, : start with coma end with equals : =
+  : start with blank end with control char :
+
+-  cat chartypes.txt | grep '[[:alpha:]]'
+	hello : alphabetical stuff :5g
+	l : start lower end upper : H
+	L : start upper end lower : h
+	5g : alpha numeric stuff : 42
+	42 : solution yo everything :
+	: start with control c end with dot : .
+	, : start with coma end with equals : =
+	: start with blank end with control char :
+
+-  cat chartypes.txt | grep '[[:alnum:]]'	/* all same file */
+	hello : alphabetical stuff :5g
+	l : start lower end upper : H
+	L : start upper end lower : h
+	5g : alpha numeric stuff : 42
+	42 : solution yo everything :
+	: start with control c end with dot : .
+	, : start with coma end with equals : =
+	: start with blank end with control char :
+
+-  cat chartypes.txt | grep '^[[:alnum:]]'
+	hello : alphabetical stuff :5g
+	l : start lower end upper : H
+	L : start upper end lower : h
+	5g : alpha numeric stuff : 42
+	42 : solution yo everything :
+ubuntu@tryit:~$ cat chartypes.txt | grep '[[:alnum:]]$'
+	hello : alphabetical stuff :5g
+	l : start lower end upper : H
+	L : start upper end lower : h
+	5g : alpha numeric stuff : 42
+
+-  cat chartypes.txt | grep '[[:digit:]]'
+	hello : alphabetical stuff :5g
+	5g : alpha numeric stuff : 42
+	42 : solution yo everything :
+-  cat chartypes.txt | grep '^[[:digit:]]'
+	5g : alpha numeric stuff : 42
+	42 : solution yo everything :
+-  cat chartypes.txt | grep '[[:digit:]]$'
+	5g : alpha numeric stuff : 42
+
+-  cat chartypes.txt | grep '[[:cntrl:]]'
+-  cat chartypes.txt | grep -v '[[:cntrl:]]'
+	
+-  cat chartypes.txt | grep '[[:punct:]]'
+	hello : alphabetical stuff :5g
+	l : start lower end upper : H
+	L : start upper end lower : h
+	5g : alpha numeric stuff : 42
+	42 : solution yo everything :
+	: start with control c end with dot : .
+	, : start with coma end with equals : =
+	: start with blank end with control char :
+-  cat chartypes.txt | grep '^[[:punct:]]'
+	, : start with coma end with equals : =
+-  cat chartypes.txt | grep '[[:punct:]]$'
+	42 : solution yo everything :
+	: start with control c end with dot : .
+	, : start with coma end with equals : =
+	: start with blank end with control char :
+-  cat chartypes.txt | grep '[[:lower:]]'
+	hello : alphabetical stuff :5g
+	l : start lower end upper : H
+	L : start upper end lower : h
+	5g : alpha numeric stuff : 42
+	42 : solution yo everything :
+	: start with control c end with dot : .
+	, : start with coma end with equals : =
+	: start with blank end with control char :
+	-  cat chartypes.txt | grep '^[[:lower:]]'
+	hello : alphabetical stuff :5g
+	l : start lower end upper : H
+-  cat chartypes.txt | grep '[[:lower:]]$'
+	hello : alphabetical stuff :5g
+	L : start upper end lower : h
+
+-  cat chartypes.txt | grep '[[:upper:]]'
+	l : start lower end upper : H
+	L : start upper end lower : h
+-  cat chartypes.txt | grep '^[[:upper:]]'
+	L : start upper end lower : h
+-  cat chartypes.txt | grep '[[:upper:]]$'
+	l : start lower end upper : H
+
+-  cat chartypes.txt | grep '[[:print:]]'
+	hello : alphabetical stuff :5g
+	        l : start lower end upper : H
+	        L : start upper end lower : h
+	        5g : alpha numeric stuff : 42
+	        42 : solution yo everything :
+	        : start with control c end with dot : .
+	        , : start with coma end with equals : =
+	        : start with blank end with control char :
+-  cat chartypes.txt | grep '^[[:print:]]'
+	hello : alphabetical stuff :5g
+-  cat chartypes.txt | grep '[[:print:]]$'
+	hello : alphabetical stuff :5g
+	        l : start lower end upper : H
+	        L : start upper end lower : h
+	        5g : alpha numeric stuff : 42
+	        42 : solution yo everything :
+	        : start with control c end with dot : .
+	        , : start with coma end with equals : =
+	        : start with blank end with control char :
+
+-  cat chartypes.txt | grep '[[:blank:]]'
+	hello : alphabetical stuff :5g
+			l : start lower end upper : H
+			L : start upper end lower : h
+			5g : alpha numeric stuff : 42
+			42 : solution yo everything :
+			: start with control c end with dot : .
+			, : start with coma end with equals : =
+			: start with blank end with control char :
+-  cat chartypes.txt | grep '^[[:blank:]]'
+        l : start lower end upper : H
+        L : start upper end lower : h
+        5g : alpha numeric stuff : 42
+        42 : solution yo everything :
+        : start with control c end with dot : .
+        , : start with coma end with equals : =
+        : start with blank end with control char :
+-  cat chartypes.txt | grep '[[:blank:]]'$
 
 
+-  cat chartypes.txt | grep '[[:space:]]'
+	hello : alphabetical stuff :5g
+	l : start lower end upper : H
+	L : start upper end lower : h
+	5g : alpha numeric stuff : 42
+	42 : solution yo everything :
+	: start with control c end with dot : .
+	, : start with coma end with equals : =
+	: start with blank end with control char :
+-  cat chartypes.txt | grep '^[[:space:]]'
+	: start with control c end with dot : .
+	: start with blank end with control char :
+-  cat chartypes.txt | grep '[[:space:]]$'
+	-  vi chartypes.txt 
+-  cat chartypes.txt | grep '[[:space:]]$'
+	42 : solution yo everything : 
 
-
-
-
-
+-  cat chartypes.txt | grep '[[:graph:]]'
+	hello : alphabetical stuff :5g
+	l : start lower end upper : H
+	L : start upper end lower : h
+	5g : alpha numeric stuff : 42
+	42 : solution yo everything : 
+	: start with control c end with dot : .
+	, : start with coma end with equals : =
+  : start with blank end with control char :
+-  cat chartypes.txt | grep '^[[:graph:]]'
+	hello : alphabetical stuff :5g
+	l : start lower end upper : H
+	L : start upper end lower : h
+	5g : alpha numeric stuff : 42
+	42 : solution yo everything : 
+	, : start with coma end with equals : =
+-  cat chartypes.txt | grep '[[:graph:]]$'
+	hello : alphabetical stuff :5g
+	l : start lower end upper : H
+	L : start upper end lower : h
+	5g : alpha numeric stuff : 42
+	: start with control c end with dot : .
+	, : start with coma end with equals : =
+	: start with blank end with control char :
 
 
 
