@@ -519,6 +519,7 @@ L : start upper end lower : h
 	5g : alpha numeric stuff : 42
 	42 : solution yo everything :
 	: start with control c end with dot : .
+
 	, : start with coma end with equals : =
 	: start with blank end with control char :
 
@@ -681,7 +682,17 @@ ubuntu@tryit:~$ cat chartypes.txt | grep '[[:alnum:]]$'
 	: start with blank end with control char :
 
 
+-  cat chartypes.txt | egrep -v '^$'
+		hello : alphabetical stuff :5g
+        l : start lower end upper : H
+        L : start upper end lower : h
+        5g : alpha numeric stuff : 42
+        42 : solution yo everything :
+        : start with control c end with dot : .
 
+        , : start with coma end with equals : =
+        : start with blank end with control char :
+-  cat chartypes.txt | egrep '^$'
 
 
 
