@@ -704,6 +704,48 @@ code character and then a 3 digit number for ther roll number within the class.
 URLs can be given these days without the protocol like https://www.iitm.ac.in/
 They can be given as just github.com for example.
 
+-  egrep '[[:digit:]]{12}' patterns.txt
+	Aadhar card number contains 12 digits and can look like 123456781234 for example.
+-  egrep '[[:digit:]]{6}' patterns.txt
+	Aadhar card number contains 12 digits and can look like 123456781234 for example.
+	Pincodes of cities in India contain 6 digits and that of IITM is 600036.
+	An example for my office landline is 4422574770 and prefix with ) to dial me in my office
+-  egrep '\b[[:digit:]]{6}\b' patterns.txt
+	Pincodes of cities in India contain 6 digits and that of IITM is 600036.
+
+
+-  egrep '[[:alnum:]]{8}' patterns.txt
+	Aadhar card number contains 12 digits and can look like 123456781234 for example.
+	Pincodes of cities in India contain 6 digits and that of IITM is 600036.
+	An example for my office landline is 4422574770 and prefix with ) to dial me in my office
+	Roll numbers in IIT for regular students are of the pattern MM22B001 where the first two letters correspond
+	to the Department code, 2 digits for the year of joining, then the program
+	code character and then a 3 digit number for ther roll number within the class.
+	URLs can be given these days without the protocol like https://www.iitm.ac.in/
+-  egrep '\b[[:alnum:]]{8}\b' patterns.txt
+	Aadhar card number contains 12 digits and can look like 123456781234 for example.
+	Pincodes of cities in India contain 6 digits and that of IITM is 600036.
+	An example for my office landline is 4422574770 and prefix with ) to dial me in my office
+	Roll numbers in IIT for regular students are of the pattern MM22B001 where the first two letters correspond
+	URLs can be given these days without the protocol like https://www.iitm.ac.in/
+
+
+- egrep '\b[[:alpha:]]{2}[[:digit:]]{2}[[:alpha:]][[:di
+	git:]]{3}\b' patterns.txt
+	Roll numbers in IIT for regular students are of the pattern MM22B001 where the first two letters correspond
+- egrep '\b[[:alnum:]]+\.[[:alnum:]]+\b' patterns.txt
+	URLs can be given these days without the protocol like https://www.iitm.ac.in/
+	They can be given as just github.com for example.
+
+- cat fields.txt
+	1234;hello world,line-1
+	234567;welcome cmdline,line-2
+	3456;parse text,line-3
+
+ 
+
+
+
 
 
 
