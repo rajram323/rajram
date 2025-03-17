@@ -253,6 +253,60 @@ sys -
 - less product
 
 ### week 4 ###
+### w4-lec 1 ### https://www.youtube.com/watch?v=Lcx9UsS7y8Y ###
+
+ppt -  executing multiple commands
+ 
+-  ls; date; wc -l /etc/profile
+	fields.txt
+	Mon Mar 17 17:17:24 UTC 2025
+	27 /etc/profile
+-  ls /blah; date; wc -l /etc/profile
+	ls: cannot access '/blah': No such file or directory
+	Mon Mar 17 17:17:39 UTC 2025
+	27 /etc/profile
+-  (ls ; date; wc -l /etc/profile)
+	fields.txt
+	Mon Mar 17 17:18:12 UTC 2025
+	27 /etc/profile
+-  echo $BASH_SUBSHELL
+	0
+-  (echo $BASH_SUBSHELL)
+	1
+
+-  (ls; date; echo $BASH_SUBSHELL)
+	Mon Mar 17 17:22:31 UTC 2025
+	1
+
+-  (ls; (date; echo $BASH_SUBSHELL))
+	Mon Mar 17 17:25:08 UTC 2025
+	2
+-  (ls; echo $BASH_SUBSHELL; (date; echo $BASH_SUBSHELL))
+	1
+	Mon Mar 17 17:25:40 UTC 2025
+	2
+-  ls; date;
+	Mon Mar 17 17:28:37 UTC 2025
+-  ls /blah && date
+	ls: cannot access '/blah': No such file or directory
+-  ls /blah || date
+	ls: cannot access '/blah': No such file or directory
+	Mon Mar 17 17:29:07 UTC 2025
+-  ls || date
+	ls not shown run in ubuntu
+
+
+
+
+
+
+
+
+
+
+
+
+### week 4 ###
 ### w4-lec 1 ### https://www.youtube.com/watch?v=1y85iTaqq8Y ###
 
 ppt - POSIX standard
@@ -742,16 +796,50 @@ They can be given as just github.com for example.
 	234567;welcome cmdline,line-2
 	3456;parse text,line-3
 
- 
+ -  cat fields.txt | cut -d " " -f 1
+	1234;hello
+	234567;welcome
+	3456;parse
+-  cat fields.txt | cut -d " " -f 2
+	world,line-1
+	cmdline,line-2
+	text,line-3
+-  cat fields.txt | cut -d " " -f 1-2
+	234;hello world,line-1
+	34567;welcome cmdline,line-2
+	456;parse text,line-3
 
+-  cat fields.txt | cut -d " " -f 1
+	1234;hello
+	234567;welcome
+	3456;parse
+-  cat fields.txt | cut -d " " -f 2
+	world,line-1
+	cmdline,line-2
+	text,line-3
+-  cat fields.txt | cut -d ";" -f 1
+	1234
+	234567
+	3456
+-  cat fields.txt | cut -d ";" -f 2
+	hello world,line-1
+	welcome cmdline,line-2
+	parse text,line-3
 
-
-
-
-
-
-
-
+-  cat fields.txt | cut -d ";" -f 2 | cut -d "," -f 1
+	hello world
+	welcome cmdline
+	parse text
+-  cat fields.txt | egrep ';.*,'
+	1234;hello world,line-1
+	234567;welcome cmdline,line-2
+	3456;parse text,line-3
+-  cat fields.txt | cut -d ";" -f 2 | cut -d "," -f 1
+	hello world
+	welcome cmdline
+	parse text
+-  cat fields.txt | cut -d ";" -f 2 | cut -d "," -f 1 | head -n 2 | tail -n 1
+	welcome cmdline
 
 
 ### week 5 ###
