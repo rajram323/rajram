@@ -295,7 +295,128 @@ ppt -  executing multiple commands
 -  ls || date
 	ls not shown run in ubuntu
 
+-  ls && date && wc -l /etc/profile
+	Tue Mar 18 01:31:19 UTC 2025
+	27 /etc/profile
+-  ls /blah && date && wc -l /etc/profile
+	ls: cannot access '/blah': No such file or directory
+-  ls && date -Q && wc -l /etc/profile
+	date: invalid option -- 'Q'
+	Try 'date --help' for more information.
+	ls should be executed try in ubuntu
 
+ppt - file descritors
+
+ppt - > file1 
+-  ls /usr/bin
+	['                                   mt-gnu
+	aa-enabled                           mv
+	aa-exec                              namei
+	aa-features-abi                      nawk
+	addpart                              nc
+	
+-  ls -1 /usr/bin
+	'['
+	aa-enabled
+	aa-exec
+	aa-features-abi	
+-  ls -1 /usr/bin > file1
+-  ls -l
+	total 8
+	-rw-rw-r-- 1 ubuntu ubuntu 7352 Mar 18 01:42 file1
+-  cat file1
+	[
+	aa-enabled
+	aa-exec
+	aa-features-abi
+
+- less file1   (space-page by page, q- come out)
+
+-  ls -l /blah > file1
+	ls: cannot access '/blah': No such file or directory
+-  ls
+	file1
+-  ls -l	(file overwritten alwayd =s give unique name)
+	total 0
+	-rw-rw-r-- 1 ubuntu ubuntu 0 Mar 18 01:48 file1
+
+-  hwinfo
+	bash: hwinfo: command not found try in ubuntu
+
+-  hwinfo > file1.txt
+	bash: hwinfo: command not found
+-  ls -al				(see permission - if not write permission then > command will not execute)
+	total 24
+	drwxr-x--- 2 ubuntu ubuntu 4096 Mar 18 01:52 .
+	drwxr-xr-x 3 root   root   4096 Mar 16 07:43 ..
+	-rw-r--r-- 1 ubuntu ubuntu  220 Jan  6  2022 .bash_logout
+	-rw-r--r-- 1 ubuntu ubuntu 3771 Jan  6  2022 .bashrc
+	-rw-r--r-- 1 root   root      0 Mar 17 06:33 .hushlogin
+	-rw------- 1 ubuntu ubuntu   20 Mar 18 01:46 .lesshst
+	-rw-r--r-- 1 ubuntu ubuntu  807 Jan  6  2022 .profile
+	-rw-rw-r-- 1 ubuntu ubuntu    0 Mar 18 01:52 file1
+	-rw-rw-r-- 1 ubuntu ubuntu    0 Mar 18 01:52 file1.txt
+-  whoami
+	ubuntu
+-  cd /usr
+- /usr$ ls > file1
+	bash: file1: Permission denied
+- /usr$ 
+- cat > file1
+	This is the first text file I am creating on command line.
+	We could use this feature to create text files onthe command line.
+	You could come out using control+D option.
+- cat file1
+	This is the first text file I am creating on command line.
+	We could use this feature to create text files onthe command line.
+	You could come out using control+D option.
+-  cat
+	This is the first line.
+	This is the first line.
+	You can see that the command processes line by line.
+	You can see that the command processes line by line.
+	finish up by sending EQF using control+D to close.
+	finish up by sending EQF using control+D to close. 
+
+-  ls
+	file1
+-  rm file1
+-  ls
+-  date >> file1	(>> contents appended in file)
+-  date >> file1
+-  date >> file1
+-  cat file1
+	Tue Mar 18 02:07:45 UTC 2025
+	Tue Mar 18 02:07:48 UTC 2025
+	Tue Mar 18 02:07:49 UTC 2025
+
+-  date >> file2; wc -l /etc/profile >> file2; file /usr/bin/znew >> file2;
+-  cat file2
+	Tue Mar 18 02:11:05 UTC 2025
+	27 /etc/profile
+	/usr/bin/znew: POSIX shell script, ASCII text executable
+-  date >> file2; wc -l /etc/profile > file2; file /usr/bin/znew >> file2; ( middle is > so it update file)
+-  cat file2
+	27 /etc/profile
+	/usr/bin/znew: POSIX shell script, ASCII text executable
+
+-  cat >> file1
+	This is a way to create a new file and append text to it.
+	First attempt to add text to the file caleed file1.
+	I come out using control+D.-  
+-  cat >> file1
+	This is my second attempt to append text to the file called file1.
+	We can inspect the content using cat or less or more commands.
+	I come out using control+D.
+-  cat >> file1
+	This is the third time attemt to append content to the file called file1.
+-  cat file1
+	This is a way to create a new file and append text to it.
+	First attempt to add text to the file caleed file1.
+	I come out using control+D.This is my second attempt to append text to the file called file1.
+	We can inspect the content using cat or less or more commands.
+	I come out using control+D.
+	This is the third time attemt to append content to the file called file1.
 
 
 
