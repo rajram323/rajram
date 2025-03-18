@@ -418,9 +418,41 @@ ppt - > file1
 	I come out using control+D.
 	This is the third time attemt to append content to the file called file1.
 
+### week 3 ###
+### w3-lec 2 ### https://www.youtube.com/watch?v=BBh69kH_G_Y ###
+ppt - 2> error to file 1
 
+-  ls $HOME
+-  ls $HOME /blah
+	ls: cannot access '/blah': No such file or directory
+	/home/ubuntu:
+-  ls $HOME /blah 2> error.txt
+	/home/ubuntu:
+	error.txt
+-  ls -l
+	total 4
+	-rw-rw-r-- 1 ubuntu ubuntu 53 Mar 18 02:43 error.txt
+-  cat error.txt
+	ls: cannot access '/blah': No such file or directory
 
+-  ls $HOME /blah > output.txt 2> error.txt
+-  ls -l
+	total 8
+	-rw-rw-r-- 1 ubuntu ubuntu 53 Mar 18 02:48 error.txt
+	-rw-rw-r-- 1 ubuntu ubuntu 35 Mar 18 02:48 output.txt
+-  cat error.txt
+	ls: cannot access '/blah': No such file or directory
+-  cat output.txt
+	/home/ubuntu:
+	error.txt
+	output.txt
 
+-  ls -R /etc > output.txt 2> error.txt
+-  ls -l
+	total 28
+	-rw-rw-r-- 1 ubuntu ubuntu    64 Mar 18 02:51 error.txt
+	-rw-rw-r-- 1 ubuntu ubuntu 20734 Mar 18 02:51 output.txt
+- cat output.txt
 
 
 
