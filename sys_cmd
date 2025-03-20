@@ -447,16 +447,172 @@ ppt - 2> error to file 1
 	error.txt
 	output.txt
 
--  ls -R /etc > output.txt 2> error.txt
+-  ls -R /etc > output.txt 2> error.txt 		(recursively)
 -  ls -l
 	total 28
 	-rw-rw-r-- 1 ubuntu ubuntu    64 Mar 18 02:51 error.txt
 	-rw-rw-r-- 1 ubuntu ubuntu 20734 Mar 18 02:51 output.txt
-- cat output.txt
+- less output.txt
+
+ppt  - <
+- cat error.txt
+- cat < error.txt
+
+-  wc error.txt
+	1  7 64 error.txt
+-  wc /etc/profile
+	27  97 582 /etc/profile
+-  cat error.txt
+	ls: cannot open directory '/etc/ssl/private': Permission denied
+-  wc < error.txt
+	1  7 64
+ppt > > >
+
+-  ls $HOME /blah
+	ls: cannot access '/blah': No such file or directory
+	/home/ubuntu:
+-  ls $HOME /blah > file1
+	ls: cannot access '/blah': No such file or directory
+-  ls $HOME /blah > file1 2> file1
+-  cat file1
+	/home/ubuntu:
+	file1
+	blah': No such file or directory
+ppt - | pipe
+-  ls /usr/bin > file1
+-  wc -l file1
+	743 file1
+-  less file1
+-  ls /usr/bin | wc -l
+	743
+
+- ls /usr/bin | less
+ppt - | >
+- ls /usr/bin | wc -l > file1
+- more file1
+	743
+
+ppt - /dev/null
+ppt - /dev/null		(to clear screen)
+
+-  ls $HOME /blah
+	ls: cannot access '/blah': No such file or directory
+	/home/ubuntu:
+	file1
+-  ls $HOME /blah > file1
+	ls: cannot access '/blah': No such file or directory
+-  ls $HOME /blah > file1 2> /dev/null
+-  cat file1
+	/home/ubuntu:
+	file1
+-  ls -R /etc > file 2> /dev/null
+-  less file1
+
+ppt - | tee
+
+- help tee
+-  ls $HOME | tee file1
+	bin
+	Desktop
+	Downloads	
+-  cat file1
+	bin
+	Desktop
+	Downloads
+-  ls $HOME | tee file1 file2	(can write to two file)
+- diff file1 file2 		(compare two file line by line)
+
+- ls $HOME | tee file1 file2 | wc -l 		(word count of single file )
+- ls $HOME /blah 2> /dev/null | tee file1 flee2 | wc -l    (the error goes to null file)
+
+### week 3 ###
+### w3-lec 3 ### https://www.youtube.com/watch?v=OAEVYgH1IMM&t=1s ###
+software management
+
+ppt - need for a package manager
+ppt - package types
+
+-  lsb_release -a
+	No LSB modules are available.
+	Distributor ID: Ubuntu
+	Description:    Ubuntu 22.04.5 LTS
+	Release:        22.04
+	Codename:       jammy
+ppt - architecture
+-  uname -a
+	Linux tryit 6.13.7-zabbly+ #ubuntu22.04 SMP PREEMPT_DYNAMIC Fri Mar 14 20:19:45 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+
+ppt - tools
+ppt - inquiring package db
+-  which apt-cache
+	/usr/bin/apt-cache
+-  which apt-get
+	/usr/bin/apt-get
+-  apt-cahe search fortune
+	run in ubuntu
+-  apt-cahe search nmap
+	run in ubuntu	
+-  apt-cahe search wget
+	run in ubuntu
+- apt-cache pkgnames
+	run in ubuntu
+- apt-cache pkgnames | less		(booktalk or booktube)
+	run in ubuntu
+- apt-cahe pkgnames | sort | less
+	run in ubuntu
+-  apt-cache pkgnames nm
+	mh
+	ml
+	map-common
+	mapsi4
+	m-tray
+	mzmail
+	map
+	mon
+	mrpflash
+	m-tray-l10n
+- apt-cache show nmap
+	Package: nmap
+	Architecture: amd64
+	Version: 7.91+dfsg1+really7.80+dfsg1-2ubuntu0.1
+	Priority: extra
+	Section: universe/net
+	Origin: Ubuntu	
+	Filename: pool/universe/n/nmap/nmap_7.91+dfsg1+really7.80+dfsg1-2ubuntu0.1_amd64.deb
+	
+ppt - package priorities
+
+- apt-cache show wget
+	ubuntu@tryit:~$ apt-cache show wget
+	Package: wget
+	Architecture: amd64
+	Version: 1.21.2-2ubuntu1.1
+	Multi-Arch: foreign
+	Priority: standard
+	Section: web
+	Origin: Ubuntu
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 ### week 4 ###
