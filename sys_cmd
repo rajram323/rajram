@@ -418,6 +418,7 @@ ppt - > file1
 	I come out using control+D.
 	This is the third time attemt to append content to the file called file1.
 
+
 ### week 3 ###
 ### w3-lec 2 ### https://www.youtube.com/watch?v=BBh69kH_G_Y ###
 ppt - 2> error to file 1
@@ -592,10 +593,64 @@ ppt - package priorities
 	Section: web
 	Origin: Ubuntu
 
+-  apt-cache show fortunes
+	Package: fortunes
+	Architecture: all
+	Version: 1:1.99.1-7.1
+	Priority: optional
+	Section: universe/games
+	Source: fortune-mod
+	Origin: Ubuntu
+ppt - package sections
 
+ppt - checksun
 
+-  echo "This is edited by Phanikumar" > file1.txt
+-  ls -l
+	total 4
+-rw-rw-r-- 1 ubuntu ubuntu 29 Mar 20 10:02 file1.txt
+-  echo "This is edited by Pnanikumar" > file2.txt
+-  cat file1.txt file2.txt
+	This is edited by Phanikumar
+	This is edited by Pnanikumar
+-  md5sum file1.txt
+	8033b5b8079e55cd5cb28572729ba689  file1.txt
+-  md5sum file2.txt
+	ab91ed3d81364803654e8df50672b9c7  file2.txt
+-  sha1sum file1.txt
+	7ad309e9386cb11293630e57ed85b5eddae5a445  file1.txt
+-  sha1sum file2.txt
+	d3dacd6b8ba9b40170323dd4740493869982365a  file2.txt
+-  sha256sum file1.txt
+	554c894428dab7e99865608ec9f31c6683044df818d4ec321f5290116d667e9f  file1.txt
+-  sha256sum file2.txt
+	027ffd1beaa36f27a9b88d7739f97417b29f5e166260c6c4d7419add80be8b30  file2.txt
 
+### week 3 ###
+### w3-lec 4 ### https://www.youtube.com/watch?v=1y85iTaqq8Y ###
+ -  echo $USER
+	guest
+-  whoami
+	guest
+-  sudo cat /etc/sudoers
+    guest is not in the sudoers file. This incident will be reported.
 
+-  sudo /etc/sudoers
+	sudo: /etc/sudoers: command not found
+-  sudo cat /etc/sudoers
+	#
+	# This file MUST be edited with the 'visudo' command as root.
+	#
+	# Please consider adding local content in /etc/sudoers.d/ instead of
+	# directly modifying this file.
+	#
+	# See the man page for details on how to write a sudoers file.
+	#
+	Defaults        env_reset
+	Defaults        mail_badpass
+	Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
+ppt - /etc/apt
 
 
 
