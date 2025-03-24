@@ -252,8 +252,8 @@ sys -
 - less manufacturer
 - less product
 
-### week 4 ###
-### w4-lec 1 ### https://www.youtube.com/watch?v=Lcx9UsS7y8Y ###
+### week 3 ###
+### w3-lec 1 ### https://www.youtube.com/watch?v=Lcx9UsS7y8Y ###
 
 ppt -  executing multiple commands
  
@@ -1712,13 +1712,273 @@ MyFileName.SomethingElse.jpg
 - echo ${myfiles[1]}
        Desktop
 
+### w6-lec 1 ### 
+### https://www.youtube.com/watch?v=fNf74ycgD9w&t=1s ###
+# Some Command line Utilities #
 
 
+ppt - productivity
+ppt - utilities find, tar,gzip, make
+ppt - find
+ppt - file packaging
+ppt - possibilities
+ppt - make
+-  man find
+	do in ubuntu
+-  find $HOME -print
+	/home/ubuntu
+	/home/ubuntu/.profile
+	/home/ubuntu/.bash_logout
+	/home/ubuntu/.bashrc
+	/home/ubuntu/.hushlogin
+-  find $HOME -print | wc -l
+	5
+-  find $HOME -mtime -2 -print
+	/home/ubuntu
+	/home/ubuntu/.hushlogin
+
+-  find $HOME -mtime +30 -print			(last 30 days)
+	/home/ubuntu/.profile
+	/home/ubuntu/.bash_logout
+	/home/ubuntu/.bashrc
+
+-  find /usr -type d -name 'man*' -print
+	/usr/share/man
+	/usr/share/man/it/man5
+	/usr/share/man/it/man8
+	/usr/share/man/it/man1
+	/usr/share/man/man3
+	/usr/share/man/man4
+	/usr/share/man/man5
+
+-  find /usr -type d -name 'man?' -print	(search only 1 letter after man)
+	/usr/share/man/it/man5
+	/usr/share/man/it/man8
+	/usr/share/man/it/man1
+-  find . -size +10M -print
+	run in ubuntu
+-  find . -size +10M -exec ls -lsh {} \;
+	run in ubuntu
+- find . -name '*.jpg' -exec ls -sh {} \;	(search for specific file)
+	run in ubuntu
+
+-  cp -r /var/log logfiles
+	cp: cannot open '/var/log/btmp' for reading: Permission denied
+	cp: cannot open '/var/log/journal/d57e6f9165184c87bba9e07df216f9b4/system.journal' for reading: Permission denied
+	cp: cannot access '/var/log/private': Permission denied
+	cp: cannot access '/var/log/incus': Permission denied
+-  cd logfiles/
+- /logfiles$ ls
+	apt  incus  journal  lastlog  private  wtmp
+- /logfiles$ du -sh
+	8.1M    .
+- /logfiles$ du -LR
+	run in ubuntu
+- /logfiles$ du -sh logfiles/
+	du: cannot access 'logfiles/': No such file or directory
+- /logfiles$ cd ..
+- du -sh logfiles/
+	8.1M    logfiles/
+- tar -cvf logfiles.tar logfiles/
+	logfiles/
+	logfiles/private/
+	logfiles/wtmp
+	logfiles/lastlog
+	logfiles/incus/
+	logfiles/journal/
+	logfiles/journal/d57e6f9165184c87bba9e07df216f9b4/
+	logfiles/journal/d57e6f9165184c87bba9e07df216f9b4/user-1000.journal
+	logfiles/apt/
+- ls -l	
+	total 8204
+	drwxr-xr-x 6 ubuntu ubuntu    4096 Mar 24 01:52 logfiles
+-rw-rw-r-- 1 ubuntu ubuntu 8396800 Mar 24 01:57 logfiles.tar
+- ls -lh
+	total 8.1M
+	drwxr-xr-x 6 ubuntu ubuntu 4.0K Mar 24 01:52 logfiles
+-rw-rw-r-- 1 ubuntu ubuntu 8.1M Mar 24 01:57 logfiles.tar
+- gzip logfiles.tar
+- ls -lh
+	total 20K
+	drwxr-xr-x 6 ubuntu ubuntu 4.0K Mar 24 01:52 logfiles
+	rw-rw-r-- 1 ubuntu ubuntu  16K Mar 24 01:57 logfiles.tar.gz
+-  gunzip logfiles.tar.gz
+-  ls -lh
+	total 8.1M
+	drwxr-xr-x 6 ubuntu ubuntu 4.0K Mar 24 01:52 logfiles
+-rw-rw-r-- 1 ubuntu ubuntu 8.1M Mar 24 01:57 logfiles.tar
+-  bzip2 logfiles.tar
+-  ls -lh
+	total 12K
+	drwxr-xr-x 6 ubuntu ubuntu 4.0K Mar 24 01:52 logfiles
+	rw-rw-r-- 1 ubuntu ubuntu 7.1K Mar 24 01:57 logfiles.tar.bz2
+- compress logfiles.tar
+	run in ubuntu
+-  ls -lsh
+	total 8.1M
+	4.0K drwxr-xr-x 6 ubuntu ubuntu 4.0K Mar 24 02:07 logfiles
+	8.1M -rw-rw-r-- 1 ubuntu ubuntu 8.1M Mar 24 02:07 logfiles.tar
+-  rm -rf logfiles
+-  ls -lsh
+	total 8.1M
+	8.1M -rw-rw-r-- 1 ubuntu ubuntu 8.1M Mar 24 02:07 logfiles.tar
+
+-  uncompress logfiles.tar.Z
+	run in ubuntu
+-  uncompress logfiles.tar
+	run in ubuntu
+-  tar -xvf logfiles.tar logfiles.tar
+	run in ubuntu
+
+- more make.file
+	BACKUPDIR=/home/gphani/backup
+	DATESTAMP:=$(shell date +"%Y-%m-%d_%H.%M")
+	TARBALL=backup_$(DATESTAMP).tar
+	
+	backup: file1 file2
+			@echo "Backing up file1 file2 to $(DATESTAMP)"
+			tar -cvf $(TARBALL) file1 file2
+			@ls -l $(TARBALL)
+			mv $(TARBALL) $(BACKIPDIR)
+
+- mkdir backup
+- touch file1
+- touch file2
+- cp logfiles/
+- ls -l logfiles/dmesg
+- cp logfiles/dmesg file1 			
+- cp logfiles/dmesg file2 			
+- make -f make.file backup
+- ls -l backup	(only backup when target file are changed)
+- make -f make.file backup
+	up to date
+- ls >> file1
+- make -f make.file backup
+	
+### w6-lec 2 ### 
+### https://www.youtube.com/watch?v=YAddHeVpG7I ###
+# Overview of shell scripts #
+
+ppt - scripts
+ppt - software tools principles
+ppt - scripts
+ppt - scripts two types
+ppt - script location
+ppt - bash environment
+ppt - output from shell scripts
+ppt - input to shell program
+ppt - shell scripts arguments
+ppt - command substitution
+ppt - for do loop
+ppt - case statement
+ppt - if loop
+ppt - conditions
+ppt - expressions
+ppt - test numeric comparisons
+ppt - test string comparisons
+ppt - unary file comparisons
+ppt - binary file comparisons
+ppt - while do file
+ppt - until do file
+ppt - functions
+
+### w6-lec 3 ### 
+### https://www.youtube.com/watch?v=_WdPclVGNNc ###
+# Bash Scripts - Part 01 #
+-  pwd
+	/home/ubuntu
+-  vi s1.sh
+-  cat s1.sh
+	#!/bin/bash
+	# s1.sh is my first script
+	echo hello world
+-  . s1.sh		(. and source do same thing)
+	hello world
+-  source s1.sh
+	hello world
 
 
+-  vi s1.sh 
+-  echo $$
+	698
+-  ps
+    PID TTY          TIME CMD
+    698 pts/1    00:00:00 bash
+    726 pts/1    00:00:00 ps
+-  source s1.sh
+	hello world
+	the PID of the process running this script is:
+	698
+-  ./s1.sh
+	bash: ./s1.sh: Permission denied		(new shell creatred)
+-  ls -l s1.sh
+	-rw-rw-r-- 1 ubuntu ubuntu 116 Mar 24 02:52 s1.sh
+-  chmod 755 s1.sh
+-  ls -l s1.sh
+	-rwxr-xr-x 1 ubuntu ubuntu 116 Mar 24 02:52 s1.sh
+-  ./s1.sh
+	hello world
+	the PID of the process running this script is:
+	731
+-  ps --forest
+    PID TTY          TIME CMD
+    698 pts/1    00:00:00 bash
+    733 pts/1    00:00:00  \_ ps
+-  vi s1.sh 
+-  cat s1.sh 
+	#!/bin/bash
+	# s1.sh is my first script
+	echo hello world
+	echo the PID of the process running this script is:
+	echo $$
+	ps --forest
+-  ./s1.sh
+	hello world
+	the PID of the process running this script is:
+	746
+    PID TTY          TIME CMD
+    698 pts/1    00:00:00 bash
+    746 pts/1    00:00:00  \_ s1.sh
+    747 pts/1    00:00:00      \_ ps
+-  echo $$
+	698
+-  vi
+-  vi s1.sh 
+-  cat s1.sh 
+	#!/bin/bash
+	# s1.sh is my first script
+	echo hello world
+	echo the PID of the process running this script is:
+	echo $$
+	ps --forest
+	export myvar=MYVAR
+	echo $myvar
+-  .s1/sh
+	bash: .s1/sh: No such file or directory
+-  .s1.sh
+	bash: .s1.sh: command not found
+-  ./s1.sh
+	hello world
+	the PID of the process running this script is:
+	765
+    PID TTY          TIME CMD
+    698 pts/1    00:00:00 bash
+    765 pts/1    00:00:00  \_ s1.sh
+    766 pts/1    00:00:00      \_ ps
+	MYVAR
+-  echo $myvar
 
-
-
+-  source s1.sh 
+	hello world
+	the PID of the process running this script is:
+	698
+    PID TTY          TIME CMD
+    698 pts/1    00:00:00 bash
+    769 pts/1    00:00:00  \_ ps
+	MYVAR
+-  echo $myvar
+	MYVAR
+-  
 
 
 
