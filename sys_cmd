@@ -2400,6 +2400,89 @@ ppt - functions
 	/bin/bzdiff: POSIX shell script, ASCII text executable
 - less .bashrc
 
+### week 3 ###
+### w3-lec 2 ### https://www.youtube.com/watch?v=BBh69kH_G_Y ###
+
+
+
+
+
+
+ppt - shell programming
+ppt - debugging
+ppt - combining conditions
+ppt - 
+-  vi condition-examples.sh
+-  chmod 755 condition-examples.sh 
+-  cat condition-examples.sh 
+	#!/bin/bash
+	for i in {1..9}
+	do
+			echo $i
+			if [ $i -le 3 ] || [ $i -ge 7 ]
+			then
+					echo $i is out of range
+			fi
+			if [ $i -gt 3 ] && [ $i -lt 7 ]
+			then
+					echo $i is in the range
+			fi
+	done
+-  ./condition-examples.sh 
+	1
+	1 is out of range
+	2
+	2 is out of range
+	3
+	3 is out of range
+	4
+	4 is in the range
+	5
+	5 is in the range
+	6
+	6 is in the range
+	7
+	7 is out of range
+	8
+	8 is out of range
+	9
+	9 is out of range
+ppt - shell arithmetic
+ppt - expr command operators - 1
+ppt - command operators - 2
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
