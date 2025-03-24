@@ -1978,14 +1978,427 @@ ppt - functions
 	MYVAR
 -  echo $myvar
 	MYVAR
+-  vi s1.sh
+-  cat s1.sh
+	#!/bin/bash
+	# s1.sh is my first script
+	echo I am invoked as:
+	echo $0
+-  ./s1.sh
+	I am invoked as:
+	./s1.sh
+-  pwd
+	/home/ubuntu
+-  ls
+	s1.sh
+-  cd /usr/bin
+
+- /home/ubuntu/s1.sh
+	I am invoked as:
+	/home/ubuntu/s1.sh
+- cd /usr/bin
+-/usr/bin$ ../../home/ubuntu/s1.sh
+	I am invoked as:
+	../../home/ubuntu/s1.sh
+-  cat s1.sh 
+	#!/bin/bash
+	# s1.sh is my first script
+	echo I am invoked as:
+	echo $0
+	echo NUmber of arguments passed to the script:
+	echo $#
+	echo First argument passed
+	echo $1
+	echo Second argument passed
+	echo $2
+-  ./s1.sh
+	I am invoked as:
+./s1.sh
+	NUmber of arguments passed to the script:
+	0
+	First argument passed
+
+	Second argument passed
+
+-  ./s1.sh arg1
+	I am invoked as:
+./s1.sh
+	NUmber of arguments passed to the script:
+	1
+	First argument passed
+	arg1
+	Second argument passed
+
+-  ./s1.sh arg1 arg2
+	I am invoked as:
+	./s1.sh
+	NUmber of arguments passed to the script:
+	2
+	First argument passed
+	arg1
+	Second argument passed
+	arg2
+-  ./s1.sh file -l
+	I am invoked as:
+	./s1.sh
+	NUmber of arguments passed to the script:
+	2
+	First argument passed
+	file
+	Second argument passed
+	-l
+-  ./s1.sh "arg1 arg2"
+	I am invoked as:
+	./s1.sh
+	NUmber of arguments passed to the script:
+	1
+	First argument passed
+	arg1 arg2
+	Second argument passed
+
+-  ./s1.sh arg1 arg2
+	I am invoked as:
+./s1.sh
+	NUmber of arguments passed to the script:
+	2
+	First argument passed
+	arg1
+	Second argument passed
+	arg2
+-  -  vi s1.sh 
+-  cat s1.sh 
+	#!/bin/bash
+	# s1.sh is my first script
+	echo I am invoked as:
+	echo $0
+	echo NUmber of arguments passed to the script:
+	echo $#
+	echo First argument passed
+	echo $1
+	echo Second argument passed
+	echo $2
+	if test $1 = $2
+	then 
+			echo The two arguments are same
+	fi
+-  .s1.sh hello hello
+	bash: .s1.sh: command not found
+-  /.s1.sh hello hello
+	bash: /.s1.sh: No such file or directory
+-  ./s1.sh hello hello
+	I am invoked as:
+	./s1.sh
+	NUmber of arguments passed to the script:
+	2
+	First argument passed
+	hello
+	Second argument passed
+	hello
+	The two arguments are same
+-  ./s1.sh hello ccc
+	I am invoked as:
+	./s1.sh
+	NUmber of arguments passed to the script:
+	2
+	First argument passed
+	hello
+	Second argument passed
+	ccc
+-  vi s1.sh
+-  cat s1.sh 
+	#!/bin/bash
+	# s1.sh is my first script
+	echo I am invoked as:
+	echo $0
+	echo NUmber of arguments passed to the script:
+	echo $#
+	echo First argument passed
+	echo $1
+	echo Second argument passed
+	echo $2
+	#------------------------------------------
+	if test $# -lt 2;
+	then
+			echo Please pass more than or equal to two arguments
+	fi
+	#--------------------------------------------
+-  ./s1.sh hello
+	bash: ./s1.sh: Permission denied
+-  chmod 755 s1.sh
+-  ./s1.sh hello
+	I am invoked as:
+	./s1.sh
+	NUmber of arguments passed to the script:
+	1
+	First argument passed
+	hello
+	Second argument passed
+
+	Please pass more than or equal to two arguments
+-  ./s1.sh hello world
+	I am invoked as:
+	./s1.sh
+	NUmber of arguments passed to the script:
+	2
+	First argument passed
+	hello
+	Second argument passed
+	world
+-  vi s1.sh 
+-  cat s1.sh 
+	#!/bin/bash
+	# s1.sh is my first script
+	echo I am invoked as:
+	echo $0
+	echo NUmber of arguments passed to the script:
+	echo $#
+	echo First argument passed
+	echo $1
+	echo Second argument passed
+	echo $2
+	#------------------------------------------
+	if test $# -ge 2;
+	then
+			if test $1 = $2;
+			then
+					echo Please pass more than or equal to two arguments
+			fi
+	fi
+	#--------------------------------------------
+-  ./s1.sh hello hello
+	I am invoked as:
+	./s1.sh
+	NUmber of arguments passed to the script:
+	2
+	First argument passed
+	hello
+	Second argument passed
+	hello
+	Please pass more than or equal to two arguments
+-  ./s1.sh hello world
+	I am invoked as:
+	./s1.sh
+	NUmber of arguments passed to the script:
+	2
+	First argument passed
+	hello
+	Second argument passed
+	world
+-  ./s1.sh hello 
+	I am invoked as:
+	./s1.sh
+	NUmber of arguments passed to the script:
+	1
+	First argument passed
+	hello
+	Second argument passed
+-  vi s2.sh
+-  cat s2.sh
+	#!/bin/bash
+	echo use of for loop
+	for i in arg1 arg2 arg3
+	do
+			echo $i
+	done
+-  chmod 755 s2.sh
+-  ./s2.sh
+	use of for loop
+	arg1
+	arg2
+	arg3
 -  
 
+  
 
 
 
 
 
 
+-  vi s
+	s1.sh  s2.sh  
+-  vi s2.sh
+-  cat s2.sh 
+	#!/bin/bash
+	echo use of for loop
+	for i in file_{1..9}
+	do
+			echo $i
+	done
+-  ./s2.sh
+	use of for loop
+	file_1
+	file_2
+	file_3
+	file_4
+	file_5
+	file_6
+	file_7
+	file_8
+	file_9
+
+-  vi s2.sh
+-  cat s2.sh 
+	#!/bin/bash
+	echo use of for loop
+	for i in file_{A..D}{1..9}
+	do
+			echo $i
+	done
+-  ./s2.sh
+	use of for loop
+	file_A1
+	file_A2
+	file_A3
+	file_A4
+	file_A5
+	file_A6
+	file_A7
+	file_A8
+	file_A9
+	file_B1
+	file_B2
+	file_B3
+	file_B4
+	file_B5
+	file_B6
+	file_B7
+	file_B8
+	file_B9
+	file_C1
+	file_C2
+	file_C3
+	file_C4
+	file_C5
+	file_C6
+	file_C7
+	file_C8
+	file_C9
+	file_D1
+	file_D2
+	file_D3
+	file_D4
+	file_D5
+	file_D6
+	file_D7
+	file_D8
+	file_D9
+  
+- ./s2.sh | wc -l
+	37
+
+
+-  vi s2.sh 
+-  cat s2.sh 
+	#!/bin/bash
+	echo use of for loop
+	for i in $(ls /bin)
+	do
+			echo $i
+	done
+-  ./s2.sh
+	use of for loop
+	[
+	aa-enabled
+	aa-exec
+	aa-features-abi
+	addpart
+	addr2line
+	apt
+-  vi s2.sh 
+-  cat s2.sh
+	#!/bin/bash
+	echo use of for loop
+	for i in $(ls /bin/z*)
+	do
+			echo $i
+	done
+-  ./ s2.sh
+	bash: ./: Is a directory
+-  ./s2.sh
+	use of for loop
+	/bin/zcat
+	/bin/zcmp
+	/bin/zdiff
+	/bin/zdump
+	/bin/zegrep
+	/bin/zfgrep
+	/bin/zforce
+	/bin/zgrep
+	/bin/zipdetails
+	/bin/zless
+	/bin/zmore
+	/bin/znew
+	/bin/zstd
+	/bin/zstdcat
+	/bin/zstdgrep
+	/bin/zstdless
+	/bin/zstdmt
+	/bin/zvol_wait
+-  vi s2.sh 
+-  cat s2.sh 
+	#!/bin/bash
+	echo use of for loop
+	for i in `ls /bin/z*`		(also can use `` for command)
+	do
+        echo $i
+	done
+-  ./s2.sh
+	use of for loop
+	/bin/zcat
+	/bin/zcmp
+	/bin/zdiff
+	/bin/zdump
+	/bin/zegrep
+-  cd /bin
+-/bin$ file znew
+	znew: POSIX shell script, ASCII text executable
+-/bin$ file znew | grep "shell script"
+	znew: POSIX shell script, ASCII text executable
+-/bin$ file zoom
+	zoom: cannot open `zoom' (No such file or directory)
+-/bin$ file zoom | grep "shell script"
+-  vi s1.sh
+-  ls -lh
+	total 4.0K
+-rw-rw-r-- 1 ubuntu ubuntu 150 Mar 24 06:57 s1.sh
+-  vi s1.sh
+-  cat s1.sh 
+	#!/bin/bash
+	echo Shell scripts in /bin directory
+	for i in $(ls /bin)
+	do      
+			echo /bin/$i
+			file /bin/$i | grep "shell script"
+	done 
+-  chmod 755 s1.sh
+-  ./s1.sh
+	Shell scripts in /bin directory
+	/bin/[
+	/bin/aa-enabled
+	/bin/aa-exec
+	/bin/aa-features-abi
+	/bin/addpart
+	/bin/addr2line
+	/bin/apt
+	/bin/apt-cache
+	/bin/apt-cdrom
+	/bin/apt-config
+	/bin/apt-extracttemplates
+-  vi s1.sh
+-  cat s1.sh 
+	#!/bin/bash
+	echo Shell scripts in /bin directory
+	for i in $(ls /bin)
+	do      
+			file /bin/$i | grep "shell script"
+	done 
+-  ./s1.sh
+	Shell scripts in /bin directory
+	/bin/apt-key: POSIX shell script, Unicode text, UTF-8 text executable
+	/bin/bashbug: POSIX shell script, ASCII text executable
+	/bin/bzdiff: POSIX shell script, ASCII text executable
+- less .bashrc
 
 
 
