@@ -2400,8 +2400,8 @@ ppt - functions
 	/bin/bzdiff: POSIX shell script, ASCII text executable
 - less .bashrc
 
-### week 3 ###
-### w3-lec 2 ### https://www.youtube.com/watch?v=BBh69kH_G_Y ###
+### week 6 ###
+### w6-lec 2 ### https://www.youtube.com/watch?v=BBh69kH_G_Y ###
 
 
 
@@ -2736,9 +2736,46 @@ ppt - command operators - 2
 	44
 	-  
 ppt - heredoc
+-  cat heredoc-example-2.sh 
+	#!/bin/bash
+	a=2.5
+	b=3.2
+	c=4
+	d=$(bc -l <<- BLAH
+			scale=5
+			($a+$b)^$c
+			BLAH
+	)
+	echo $d
+-  vi path-example.sh
+	-  cat path-example.sh 
+	#!/bin/bash
+	echo path is set as %PATH
+	i=0
+	IFS=:
+	for n in $PATH
+	do
+			echo $i $n
+			(( i++ ))
+	done
+-  ./path-example.sh
+	bash: ./path-example.sh: Permission denied
+-  chmod 755 path-example.sh 
+-  ./path-example.sh
+	path is set as %PATH
+	0 /usr/local/sbin
+	1 /usr/local/bin
+	2 /usr/sbin
+	3 /usr/bin
+	4 /sbin
+	5 /bin
+	6 /snap/bin
 
 
+### week 7 ###
+### w7-lec 2 ### https://www.youtube.com/watch?v=n56JIC15DBo ###
 
+ppt - if else
 
 
 
