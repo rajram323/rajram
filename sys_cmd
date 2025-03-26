@@ -2998,6 +2998,201 @@ ppt - processing output of loop
 	sys     0m0.008s
 -  wc -l largefile.txt 
 	999 largefile.txt
--  
+ppt - break
+-  vi break-example-1.sh
+-  chmod 755 break-example-1.sh 
+-  cat break-example-1.sh 
+	#!/bin/bash
+	n=10
+	i=0
+	while [ $i -lt $n ]
+	do
+			echo $i
+			(( i++ ))
+			if [ $i -eq 5 ]
+			then 
+					echo 5 is bad news
+					break
+			fi
+	done
+-  ./break-example-1.sh 
+	0
+	1
+	2
+	3
+	4
+	5 is bad news
+-  vi break-example-2.sh
+-  chmod 755 break-example-2.sh 
+-  cat break-example-2.sh 
+	#!/bin/bash
+	n=10
+	i=0
+	while [ $i -lt $n ]
+	do
+			echo $i
+			j=0
+			while [ $j -le $i ]
+			do
+					printf "$j "
+					(( j++ ))
+					if [ $i -eq 7 ]
+					then 
+							#echo 7 is bad news
+							break 2
+					fi
+			done
+			(( i++ ))
+	done
+	-  ./break-example-2.sh 
+	0
+	0 1
+	0 1 2
+	0 1 2 3
+	0 1 2 3 4
+	0 1 2 3 4 5
+	0 1 2 3 4 5 6
+	0 1 2 3 4 5 6 7
+	0 -  vi break-example-2.sh 
+-  ./break-example-2.sh 
+0
+0 1
+0 1 2
+0 1 2 3
+0 1 2 3 4
+0 1 2 3 4 5
+0 1 2 3 4 5 6
+0 1 2 3 4 5 6 7
+0 8
+0 1 2 3 4 5 6 7 8 9
+0 1 2 3 4 5 6 7 8 9 -  
+
+ppt - break out of outer loop 
+ppt - continue
+
+-  vi continue-example.sh
+-  chmod 755 continue-example.sh 
+-  cat continue-example.sh 
+	#!/bin/bash
+	n=9
+	i=1
+	while [ $i -lt $n ]
+	do
+			printf "\n loop $i:"
+			j=0
+			(( i++ ))
+			while [ $j -le $i ]
+			do
+					(( j++ ))
+					if [ $j -gt 3 ] && [ $j -lt 7 ]
+					then
+							continue
+					fi
+					printf "$j "
+			done
+	done
+-  ./continue-example.sh 
+
+	 loop 1:1 2 3 
+	 loop 2:1 2 3 
+	 loop 3:1 2 3 
+	 loop 4:1 2 3 
+	 loop 5:1 2 3 7 
+	 loop 6:1 2 3 7 8 
+	 loop 7:1 2 3 7 8 9 
+	 loop 8:1 2 3 7 8 9 10 -  
+
+ppt - shift
+
+-  vi shift-example.sh
+-  chmod 577 shift-example.sh 
+-  cat shift-example.sh 
+	#!/bin/bash
+	echo Number of arguments :
+	echo $#
+	i=1
+	while [ -n "$1" ]
+	do
+			echo arguments $i is $l
+			shift
+			(( i++ ))
+	done
+	echo NUmber of arguments now:
+	echo $#
+-  ./shift-example.sh 
+	Number of arguments :
+	0
+	NUmber of arguments now:
+	0
+-  vi shift-example.sh
+-  chmod 577 shift-example.sh 
+-  cat shift-example.sh 
+	#!/bin/bash
+	echo Number of arguments :
+	echo $#
+	i=1
+	while [ -n "$1" ]
+	do
+			echo arguments $i is $l
+			shift
+			(( i++ ))
+	done
+	echo NUmber of arguments now:
+	echo $#
+-  ./shift-example.sh 
+	Number of arguments :
+	0
+	NUmber of arguments now:
+	0
+	-  ./shift-example.sh a b c d ef g h i j k l m n o p q r s t u v w x y z
+	Number of arguments :
+	25
+	arguments 1 is
+	arguments 2 is
+	arguments 3 is
+	arguments 4 is
+	arguments 5 is
+	arguments 6 is
+	arguments 7 is
+	arguments 8 is
+	arguments 9 is
+	arguments 10 is
+	arguments 11 is
+	arguments 12 is
+	arguments 13 is
+	arguments 14 is
+	arguments 15 is
+	arguments 16 is
+	arguments 17 is
+	arguments 18 is
+	arguments 19 is
+	arguments 20 is
+	arguments 21 is
+	arguments 22 is
+	arguments 23 is
+	arguments 24 is
+	arguments 25 is
+	NUmber of arguments now:
+	0
+ppt - exec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
