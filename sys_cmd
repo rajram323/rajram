@@ -2777,12 +2777,227 @@ ppt - heredoc
 
 ppt - if else
 
+-  vi if-elif-else-example.sh
+-  chmod 755 if-elif-else-example.sh 
+-  cat if-elif-else-example.sh 
+	#!/bin/bash
+	if [ $# -gt 2 ]
+	then
+			echo arguments given and more than sufficent $#
+	elif [ $# -gt 1 ]
+	then
+			echo arguments  given and sufficient $#
+	elif [ $# -gt 0 ]
+	then
+			echo arguments given but not sufficent $#
+	else
+			echo arguments are needed $#
+    fi
+-  ./if-elif-else-example.sh a b c
+	arguments given and more than sufficent 3
+-  ./if-elif-else-example.sh a b
+	arguments given and sufficient 2
+-  ./if-elif-else-example.sh a
+	arguments given but not sufficent 1
+-  ./if-elif-else-example.sh
+	arguments are needed 0
+
+ppt - case statement
+
+-  cat case-example.sh 
+	#!/bin/bash
+	echo what is your favorite image processor?
+	read pname
+	case $pname in
+			[gG]imp | inkscape)
+							echo good choice
+							;;
+			[aA]dobe*)
+							echo that costs a lot and needs cloud
+							;;
+			image)
+							echo measuring things on the image?
+							;;
+			*)
+							echo I did not know $pname could do image stuff
+							;;
+	esac
+-  ./case-example.sh 
+	what is your favorite image processor?
+	Gimp
+	good choice
+-  ./case-example.sh 
+	what is your favorite image processor?
+	gimp
+	good choice
+-  ./case-example.sh 
+	what is your favorite image processor?
+	Adobe Acrobat
+	that costs a lot and needs cloud
+-  ./case-example.sh 
+	what is your favorite image processor?
+	imagej
+	I did not know imagej could do image stuff
+-  ./case-example.sh 
+	what is your favorite image processor?
+	imagej-lkjsdf
+	I did not know imagej-lkjsdf could do image stuff
+ppt - c style loop
+ -  vi c-for-loop-example.sh
+-  chmod 755 c-for-loop-example.sh 
+-  cat c-for-loop-example.sh 
+	#!/bin/bash
+	begin=1
+	finish=10
+	for (( a= $begin; a < $finish; a++ ))
+	do
+			b=$(( a**2 ))
+			echo $b
+	done
+-  ./c-for-loop-example.sh 
+	1
+	4
+	9
+	16
+	25
+	36
+	49
+	64
+	81
+-  cat c-for-loop-example-2.sh 
+	#!/bin/bash
+	begin1=1
+	begin2=20
+	finish=20
+	for (( a= $begin1, b=$begin2; a < $finish; a++, b--))
+	do
+			c=$(( a**2 ))
+			d=$(( b**2 ))
+
+			echo $c $d
+	done
+-  ./c-for-loop-example-2.sh 
+	1 400
+	4 361
+	9 324
+	16 289
+	25 256
+	36 225
+	49 196
+	64 169
+	81 144
+	100 121
+	121 100
+	144 81
+	169 64
+	196 49
+	225 36
+	256 25
+	289 16
+	324 9
+	361 4
+	-  
+-  cat c-for-loop-example-2.sh 
+	#!/bin/bash
+	begin1=1
+	begin2=20
+	finish=1
+	for (( a= $begin1, b=$begin2; b > $finish; a++, b--))
+	do
+			c=$(( a**2 ))
+			d=$(( b**2 ))
+	
+			echo $c $d
+	done
+-  ./c-for-loop-example-2.sh 
+	1 400
+	4 361
+	9 324
+	16 289
+	25 256
+	36 225
+	49 196
+	64 169
+	81 144
+	100 121
+	121 100
+	144 81
+	169 64
+	196 49
+	225 36
+	256 25
+	289 16
+	324 9
+	361 4
+ppt - processing output of loop
+-  cat loop-output.sh
+	#!/bin/bash
+	filename=largefile.txt
+	if [ -e $filename ]
+	then
+			echo file $filename exists
+			exit 1
+	fi
 
 
+	i=1
+	while [ $i      -lt 10 ]
+	do
+			echo $i $[$i+1]
+			(( i++ ))
+	done > $filename
+
+	echo file $filename written
+	ls -l $filename
+-  ./loop-output.sh
+	file largefile.txt written
+	-rw-rw-r-- 1 ubuntu ubuntu 37 Mar 26 03:01 largefile.txt
+-  cat largefile.txt 
+	1 2
+	2 3
+	3 4
+	4 5
+	5 6
+	6 7
+	7 8
+	8 9
+	9 10
+-  ./loop-output.sh
+	file largefile.txt exists
+-  rm largefile.txt 
+-  vi loop-output.sh
+-  cat loop-output.sh
+	#!/bin/bash
+	filename=largefile.txt
+	if [ -e $filename ]
+	then
+			echo file $filename exists
+			exit 1
+	fi
 
 
+	i=1
+	while [ $i      -lt 1000 ]
+	do
+			echo $i $[$i+1]
+			(( i++ ))
+	done > $filename
 
+	echo file $filename written
+	ls -l $filename
+-  ./loop-output.sh
+	file largefile.txt written
+	-rw-rw-r-- 1 ubuntu ubuntu 7779 Mar 26 03:03 largefile.txt
+-  rm largefile.txt 
+-  time ./loop-output.sh
+	file largefile.txt written
+	-rw-rw-r-- 1 ubuntu ubuntu 7779 Mar 26 03:03 largefile.txt
 
-
+	real    0m0.026s
+	user    0m0.018s
+	sys     0m0.008s
+-  wc -l largefile.txt 
+	999 largefile.txt
+-  
 
 
