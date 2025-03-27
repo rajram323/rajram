@@ -3442,6 +3442,612 @@ ppt - start acript
 to entry
 - crontab -e	
 
+### week 8 ###
+### w8-lec 2 ### https://www.youtube.com/watch?v=uCJjZ3cbaAw&list=PLZ2ps__7DhBajgl-4et7X2BjOIObqlp81&index=25&t=45s ###
+
+ppt - introduction
+ppt - execution model
+ppt -usage
+ppt - sed statements
+ppt - group statement
+ppt - address
+ppt - actions
+ppt - programming
+ppt - bash + sed
+ppt - sed
+sed : stream editor
+
+-  vi sample.txt
+-  cat sample.txt 
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+-  sed -e "" sample.txt
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+-  sed -n -e "" sample.txt
+-  sed -e "=" sample.txt
+	1
+	L1 linux is a free, opensource, secure and reliable os
+	2
+	L2 text editing: vim or emacs in place of notepad
+	3
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	4
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	5
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	6
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	7
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	8
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	9
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	10
+	L10 array math: octave, numpy, scilab in place of matlab
+	11
+	L11 literature: jabref, calibre in place of mandeley
+	12
+	L12 video editing: kdenlive in place camtasia
+	13
+	L13 screen recording: obs in place of camtasia
+	14
+	L14 fetch files: wget, curl
+	15
+	L15 security: ufw, netset, nmap
+-  sed -n -e "5p" sample.txt
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+-  sed  -e "5p" sample.txt			(lin 5 print twice )
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+-  
+-  sed  -e '5!p' sample.txt
+	L1 linux is a free, opensource, secure and reliable os
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	L15 security: ufw, netset, nmap
+-  sed  -e '$p' sample.txt
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	L15 security: ufw, netset, nmap
+-  sed  -e '$!p' sample.txt
+	L1 linux is a free, opensource, secure and reliable os
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+-  sed  -e "$p" sample.txt
+-  echo $p
+
+-  sed -n -e '5,8p' sample.txt
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop	
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+-  sed -n -e '=; 5,8p' sample.txt
+	1
+	2
+	3
+	4
+	5
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	6
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	7
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	8
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	9
+	10
+	11
+	12
+	13
+	14
+	15
+-  sed -n -e '=; 5,8{=;p}' sample.txt
+	1
+	2
+	3
+	4
+	5
+	5
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	6
+	6
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	7
+	7
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	8
+	8
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	9
+	10
+	11
+	12
+	13
+	14
+	15
+-  sed -n -e ' 5,8{=;p}' sample.txt
+	5
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	6
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	7
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	8
+	L8 email: mozilla thunderbird in place of microsoft outlook
+-  sed -n -e '1~2p' sample.txt
+	L1 linux is a free, opensource, secure and reliable os
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L11 literature: jabref, calibre in place of mandeley
+	L13 screen recording: obs in place of camtasia
+	L15 security: ufw, netset, nmap
+-  sed -n -e '1~3p' sample.txt
+	L1 linux is a free, opensource, secure and reliable os
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L10 array math: octave, numpy, scilab in place of matlab
+	L13 screen recording: obs in place of camtasia
+-  sed -n -e '1~3!p' sample.txt
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+-    
+-  sed -n -e '/microsoft/p' sample.txt
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+-  sed -n -e '/in place of/p' sample.txt
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L13 screen recording: obs in place of camtasia
+-  sed -n -e '/in place of/!p' sample.txt
+	L1 linux is a free, opensource, secure and reliable os
+	L12 video editing: kdenlive in place camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	L11 literature: jabref, calibre in place of mandeley
+
+-  sed -E -e '3,6s/^L[[:digit:]]+ //g' sample.txt
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	text processing: latex, linreoffice writer in place of microsoft word
+	spreadsheet: linreoffice calc in place of microsoft excel
+	slides: libreoffice impress in place of microsoft powerpoint
+	image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	L15 security: ufw, netset, nmap
+-  sed -E -e 's/^L[[:digit:]]+ //g' sample.txt
+	linux is a free, opensource, secure and reliable os
+	text editing: vim or emacs in place of notepad
+	text processing: latex, linreoffice writer in place of microsoft word
+	spreadsheet: linreoffice calc in place of microsoft excel
+	slides: libreoffice impress in place of microsoft powerpoint
+	image processing: gimp, inkspace, imagej in place of adobe photoshop
+	browsing: mozilla firefox in place of microsoft outlook
+	email: mozilla thunderbird in place of microsoft outlook
+	symbolic math: sympy, sagemath in place of maple, mathematica
+	array math: octave, numpy, scilab in place of matlab
+	literature: jabref, calibre in place of mandeley
+	video editing: kdenlive in place camtasia
+	screen recording: obs in place of camtasia
+	fetch files: wget, curl
+	security: ufw, netset, nmap
+	security: ufw, netset, nmap
+-  sed -E -e '3,/symbolic/s/^L[[:digit:]]+ //g' sample.txt
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	text processing: latex, linreoffice writer in place of microsoft word
+	spreadsheet: linreoffice calc in place of microsoft excel
+	slides: libreoffice impress in place of microsoft powerpoint
+	image processing: gimp, inkspace, imagej in place of adobe photoshop
+	browsing: mozilla firefox in place of microsoft outlook
+	email: mozilla thunderbird in place of microsoft outlook
+	symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	L15 security: ufw, netset, nmap
+-  sed -E -e '1~3s/^L[[:digit:]]+ //g' sample.txt
+	linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	security: ufw, netset, nmap
+-  sed -E -e '1~2s/^L[[:digit:]]+ //g' sample.txt
+	linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	text processing: latex, linreoffice writer in place of microsoft word
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	slides: libreoffice impress in place of microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	security: ufw, netset, nmap
+	L15 security: ufw, netset, nmap
+-  sed -E -e '1~2!s/^L[[:digit:]]+ //g' sample.txt
+	L1 linux is a free, opensource, secure and reliable os
+	text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	security: ufw, netset, nmap
+-  sed -E -e '/text/,/video/s/^L[[:digit:]]+ //g' sample.txt
+	L1 linux is a free, opensource, secure and reliable os
+	text editing: vim or emacs in place of notepad
+	text processing: latex, linreoffice writer in place of microsoft word
+	spreadsheet: linreoffice calc in place of microsoft excel
+	slides: libreoffice impress in place of microsoft powerpoint
+	image processing: gimp, inkspace, imagej in place of adobe photoshop
+	browsing: mozilla firefox in place of microsoft outlook
+	email: mozilla thunderbird in place of microsoft outlook
+	symbolic math: sympy, sagemath in place of maple, mathematica
+	array math: octave, numpy, scilab in place of matlab
+	literature: jabref, calibre in place of mandeley
+	video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	L15 security: ufw, netset, nmap
+-  
+-  sed -e '1i ---------header--------' sample.txt
+	---------header--------
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	L15 security: ufw, netset, nmap
+-  sed -e '1i ---------header--------' -e '$a -----------footer--------' sample.txt
+	---------header--------
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	L15 security: ufw, netset, nmap
+	-----------footer--------
+-  sed -e '4i ---------header--------' -e '8a -----------footer--------' sample.txt
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	---------header--------
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	-----------footer--------
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	L15 security: ufw, netset, nmap
+-  sed -e '/microsoft/i ---------header--------' -e '/in place of/a -----------alternative--------' sample.txt
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	-----------alternative--------
+	---------header--------
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	-----------alternative--------
+	---------header--------
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	-----------alternative--------
+	---------header--------
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	-----------alternative--------
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	-----------alternative--------
+	---------header--------
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	-----------alternative--------
+	---------header--------
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	-----------alternative--------
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	-----------alternative--------
+	L10 array math: octave, numpy, scilab in place of matlab
+	-----------alternative--------
+	L11 literature: jabref, calibre in place of mandeley
+	-----------alternative--------
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	-----------alternative--------
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	L15 security: ufw, netset, nmap
+-  
+-  sed -e '1~5i ---------break--------' sample.txt
+	---------break--------
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	---------break--------
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	---------break--------
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	---------break--------
+	L15 security: ufw, netset, nmap
+-  sed -e '/microsoft/c ---------censored--------' sample.txt
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	---------censored--------
+	---------censored--------
+	---------censored--------
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	---------censored--------
+	---------censored--------
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	L15 security: ufw, netset, nmap
+-  sed -e '1~3c ---------censored--------' sample.txt
+	---------censored--------
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	---------censored--------
+	L5 slides: libreoffice impress in place of microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	---------censored--------
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	---------censored--------
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	---------censored--------
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	---------censored--------
+-  vi hf.sed
+-  more hf.sed
+	#!/usr/bin/sed -f
+	1i --- header ------
+	$a --- footer ---
+	1,5s/in place of/in lieu of/g
+	6i --- simpler stuff here onward ---
+	6,$s/in pplace of.*//g
+	-  sed -f hf.sed sample.txt 
+	--- header ------
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in lieu of notepad
+	L3 text processing: latex, linreoffice writer in lieu of microsoft word
+	L4 spreadsheet: linreoffice calc in lieu of microsoft excel
+	L5 slides: libreoffice impress in lieu of microsoft powerpoint
+	--- simpler stuff here onward ---
+	L6 image processing: gimp, inkspace, imagej in place of adobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple, mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+	L15 security: ufw, netset, nmap
+	--- footer ---
+-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
