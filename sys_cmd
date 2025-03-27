@@ -4025,8 +4025,248 @@ sed : stream editor
 	L15 security: ufw, netset, nmap
 	L15 security: ufw, netset, nmap
 	--- footer ---
--  
+-  more clean.sed 
+	/[[:alpha:]]{2}[[:digit:]]{2}[[:alpha:]][[:digit:]]+/!d
+	s/[ ]+/ /g
+	s/ ([[:digit:]]+).*/ \1/g
+-  more block-ex-6.input 
+	This file contains comments and numbers
+	Lines containing roll number and the fee paid need to be picked up
+	mm22b901 21000
+	Sum of total fee paid needs to be printed at the end
+	Also a list of students, who paid how much
+	mm22b902 218000
+	mm22b903 21500 paid through DD
+	mm22b905 22000
+	updated as on Jan 26, 2022 by Phani
+-  sed -E -f clean.sed block-ex-6.input
+	mm22b901 21000
+	mm22b902 218000
+	mm22b903 21500
+	mm22b905 22000
+-
+-  vi sample-split.txt
+-  cat sample-split.txt 
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer \
+	in place of microsoft word
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in place\
+	of microsoft \
+	powerpoint
+	L6 image processing: gimp, inkspace, imagej in place of\
+	adobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple,\
+	mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
 
+-  vi join.sed
+-  cat join.sed 
+	#!/usr/bin/sed -f
+	:x /\\$/N
+	/\\/s/\\\n//gimp
+	/\\$/bx
+-  sed -f join.sed sample.txt
+	sed: can't read sample.txt: No such file or directory
+-  sed -f join.sed sample-split.txt
+	L1 linux is a free, opensource, secure and reliable os
+	L2 text editing: vim or emacs in place of notepad
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	L5 slides: libreoffice impress in placeof microsoft \
+	L5 slides: libreoffice impress in placeof microsoft powerpoint
+	L5 slides: libreoffice impress in placeof microsoft powerpoint
+	L6 image processing: gimp, inkspace, imagej in place ofadobe photoshop
+	L6 image processing: gimp, inkspace, imagej in place ofadobe photoshop
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	L9 symbolic math: sympy, sagemath in place of maple,mathematica
+	L9 symbolic math: sympy, sagemath in place of maple,mathematica
+	L10 array math: octave, numpy, scilab in place of matlab
+	L11 literature: jabref, calibre in place of mandeley
+	L12 video editing: kdenlive in place camtasia
+	L13 screen recording: obs in place of camtasia
+	L14 fetch files: wget, curl
+	L15 security: ufw, netset, nmap
+
+-  sed --debug -f join.sed sample-split.txt
+	SED PROGRAM:
+	  :x
+	  /\\\\$/ N
+	  /\\\\/ s/\\\\\n//imgp
+	  /\\\\$/ b x
+	INPUT:   'sample-split.txt' line 1
+	PATTERN: L1 linux is a free, opensource, secure and reliable os
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+	L1 linux is a free, opensource, secure and reliable os
+	INPUT:   'sample-split.txt' line 2
+	PATTERN: L2 text editing: vim or emacs in place of notepad
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+	L2 text editing: vim or emacs in place of notepad
+	INPUT:   'sample-split.txt' line 3
+	PATTERN: L3 text processing: latex, linreoffice writer \\
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	PATTERN: L3 text processing: latex, linreoffice writer \\\nin place of microsoft word
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	MATCHED REGEX REGISTERS
+	  regex[0] = 46-48 '\
+	'
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	PATTERN: L3 text processing: latex, linreoffice writer in place of microsoft word
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+	L3 text processing: latex, linreoffice writer in place of microsoft word
+	INPUT:   'sample-split.txt' line 5
+	PATTERN: L4 spreadsheet: linreoffice calc in place of microsoft excel
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+	L4 spreadsheet: linreoffice calc in place of microsoft excel
+	INPUT:   'sample-split.txt' line 6
+	PATTERN: L5 slides: libreoffice impress in place\\
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	PATTERN: L5 slides: libreoffice impress in place\\\nof microsoft \\
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	MATCHED REGEX REGISTERS
+	  regex[0] = 39-41 '\
+	'
+	L5 slides: libreoffice impress in placeof microsoft \
+	PATTERN: L5 slides: libreoffice impress in placeof microsoft \\
+	COMMAND: /\\\\$/ b x
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	PATTERN: L5 slides: libreoffice impress in placeof microsoft \\\npowerpoint
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	MATCHED REGEX REGISTERS
+	  regex[0] = 52-54 '\
+	'
+	L5 slides: libreoffice impress in placeof microsoft powerpoint
+	PATTERN: L5 slides: libreoffice impress in placeof microsoft powerpoint
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+	L5 slides: libreoffice impress in placeof microsoft powerpoint
+	INPUT:   'sample-split.txt' line 9
+	PATTERN: L6 image processing: gimp, inkspace, imagej in place of\\
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	PATTERN: L6 image processing: gimp, inkspace, imagej in place of\\\nadobe photoshop
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	MATCHED REGEX REGISTERS
+	  regex[0] = 55-57 '\
+	'
+	L6 image processing: gimp, inkspace, imagej in place ofadobe photoshop
+	PATTERN: L6 image processing: gimp, inkspace, imagej in place ofadobe photoshop
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+	L6 image processing: gimp, inkspace, imagej in place ofadobe photoshop
+	INPUT:   'sample-split.txt' line 11
+	PATTERN: L7 browsing: mozilla firefox in place of microsoft outlook
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+	L7 browsing: mozilla firefox in place of microsoft outlook
+	INPUT:   'sample-split.txt' line 12
+	PATTERN: L8 email: mozilla thunderbird in place of microsoft outlook
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+	L8 email: mozilla thunderbird in place of microsoft outlook
+	INPUT:   'sample-split.txt' line 13
+	PATTERN: L9 symbolic math: sympy, sagemath in place of maple,\\
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	PATTERN: L9 symbolic math: sympy, sagemath in place of maple,\\\nmathematica
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	MATCHED REGEX REGISTERS
+	  regex[0] = 52-54 '\
+	'
+	L9 symbolic math: sympy, sagemath in place of maple,mathematica
+	PATTERN: L9 symbolic math: sympy, sagemath in place of maple,mathematica
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+	L9 symbolic math: sympy, sagemath in place of maple,mathematica
+	INPUT:   'sample-split.txt' line 15
+	PATTERN: L10 array math: octave, numpy, scilab in place of matlab
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+	L10 array math: octave, numpy, scilab in place of matlab
+	INPUT:   'sample-split.txt' line 16
+	PATTERN: L11 literature: jabref, calibre in place of mandeley
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+	L11 literature: jabref, calibre in place of mandeley
+	INPUT:   'sample-split.txt' line 17
+	PATTERN: L12 video editing: kdenlive in place camtasia
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+	L12 video editing: kdenlive in place camtasia
+	INPUT:   'sample-split.txt' line 18
+	PATTERN: L13 screen recording: obs in place of camtasia
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+	L13 screen recording: obs in place of camtasia
+	INPUT:   'sample-split.txt' line 19
+	PATTERN: L14 fetch files: wget, curl
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+	L14 fetch files: wget, curl
+	INPUT:   'sample-split.txt' line 20
+	PATTERN: L15 security: ufw, netset, nmap
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+	L15 security: ufw, netset, nmap
+	INPUT:   'sample-split.txt' line 21
+	PATTERN: 
+	COMMAND: :x
+	COMMAND: /\\\\$/ N
+	COMMAND: /\\\\/ s/\\\\\n//imgp
+	COMMAND: /\\\\$/ b x
+	END-OF-CYCLE:
+
+-    
 
 
 
