@@ -3175,11 +3175,212 @@ ppt - shift
 	NUmber of arguments now:
 	0
 ppt - exec
+-  cat exec-example.sh 
+#!/bin/bash
+	echo PID of shell running this command
+	echo $$
+	echo leaving bash behind and opening xterm if available
+	exec xterm
+	echo looks like xterm is not available or opening
+-  echo $$
+	703
+-  ./exec-example.sh 
+	PID of shell running this command
+	715
+	leaving bash behind and opening xterm if available
+- ./exec-example.sh: line 5: exec: xterm: not found
+ 	run in ubuntu
+-  cat exec-example.sh 
+	#!/bin/bash
+	echo PID of shell running this command
+	echo $$
+	echo leaving bash behind and opening xterm if available
+	exec xterml
+	echo looks like xterm is not available or opening
+-  echo $$
+	703
+-  ./exec-example.sh 
+	PID of shell running this command
+	723
+	leaving bash behind and opening xterm if available
+	./exec-example.sh: line 5: exec: xterml: not found
+### week 7 ###
+### w7-lec 3 ### https://www.youtube.com/watch?v=kjMhi4gI0po ###
 
+ppt -eval
+-  cat eval-examples.sh 
+	#!/bin/bash
+	cmd="date"
+	fmt="+%d-%B-%Y"
+	eval $cmd $fmt
 
+-  ./eval-examples.sh 
+	27-March-2025
 
+- chmod 577 eval-exampless.sh
+- ./eval-exampless.sh
+	875
+	27-March-2025
+	875
+-  cat function-example.sh 
+	#!/bin/bash
+	usage()
+	{
+			echo usage $1 str1 str2
+	}
 
+	swap()
+	{
+			echo $2 $1
+	}
 
+	if [ $# -lt 2 ]
+	then
+			usage $0
+			exit 1
+	fi
+	swap $1 $2
+-  ./function-example.sh 
+	usage ./function-example.sh str1 str2
+-  ./function-example.sh arg1
+	usage ./function-example.sh str1 str2
+-  ./function-example.sh arg1 arg2
+	arg2 arg1
+
+-  vi mylib2.sh
+-  chmod 577 mylib2.sh
+-  vi function-example2.sh
+-  chmod 577 function-example2.sh
+-  cat mylib2.sh
+	usage()
+	{
+			echo usage $1 str1 str2
+	}
+
+	swap()
+	{
+			echo $2 $1
+	}
+-  cat function-example2.sh
+	#!/bin/bash
+	source mylib.sh
+
+	if [ $# -lt 2 ]
+	then
+        usage $0
+        exit 1
+	fi
+	swap $1 $2
+-  ./function-example2.sh
+	usage ./function-example2.sh str1 str2
+-  ./function-example2.sh arg1
+	usage ./function-example2.sh str1 str2
+-  ./function-example2.sh arg1 arg2
+	arg2 arg1
+	arg2 arg1
+-  vi getopts-example2.sh 
+-  chmod 577 getopts-example2.sh
+-  cat getopts-example2.sh
+	#!/bin/bash
+	while getopts "ab:c:" options;
+	do
+					case "${options}" in
+							b)
+									barg=${OPTARG}
+									echo accepted: -b $barg
+									;;
+							c)
+									carg=${optarg}
+									echo accepted: -c $carg
+									;;
+							a)
+									echo accepted: -a
+									;;
+							*)
+									echo Usage: -a -b barg -c carg
+									;;
+					esac
+	done
+-  ./getopts-example2.sh -a -b bargument -c cargument -d -e
+	accepted: -a
+	accepted: -b bargument
+	accepted: -c
+./getopts-example2.sh: illegal option -- d
+	Usage: -a -b barg -c carg
+./getopts-example2.sh: illegal option -- e
+	Usage: -a -b barg -c carg
+-  ./getopts-example2.sh -a -b bargument -c 
+	accepted: -a
+	accepted: -b bargument
+	./getopts-example2.sh: option requires an argument -- c
+	Usage: -a -b barg -c carg
+-  ./getopts-example2.sh -a -b -c cargument
+	accepted: -a
+	accepted: -b -c
+-  ./getopts-example2.sh -a -b
+	accepted: -a
+	./getopts-example2.sh: option requires an argument -- b
+	Usage: -a -b barg -c carg
+-  ./getopts-example2.sh -a -c
+	accepted: -a
+	./getopts-example2.sh: option requires an argument -- c
+	Usage: -a -b barg -c carg
+-  ./getopts-example2.sh -a
+	accepted: -a
+ppt - select loop
+ -  vi select-example.sh
+-  chmod 577 select-example.sh
+-  cat select-example.sh
+	#!/bin/bash
+	echo select a middle one
+	select i in {1..10}
+	do
+			case $i in
+					1 | 2 | 3)
+									echo you picked a small one
+									;;
+					8 | 9 | 10)
+									echo you picked a big one
+									;;
+					4 | 5 | 6 | 7)
+									echo you picked the right one
+									break
+									;;
+					esac
+	done
+	echo selection completed with $i
+-  ./select-example.sh 
+	select a middle one
+	1) 1     3) 3    5) 5    7) 7    9) 9
+	2) 2     4) 4    6) 6    8) 8   10) 10
+	#? 1
+	you picked a small one
+	#? 9
+	you picked a big one
+	#? 5
+	you picked the right one
+	selection completed with 5
+-  ./select-example.sh 
+	select a middle one
+	1) 1     3) 3    5) 5    7) 7    9) 9
+	2) 2     4) 4    6) 6    8) 8   10) 10
+	#? adsd
+	#? dsfsdfs
+	#? sfsafsf
+	#? 1
+	you picked a small one
+	#? 3
+	you picked a small one
+	#? 4
+	you picked the right one
+	selection completed with 4
+-  ./select-example.sh 
+	select a middle one
+	1) 1     3) 3    5) 5    7) 7    9) 9
+	2) 2     4) 4    6) 6    8) 8   10) 10
+	#? 5
+	you picked the right one
+	selection completed with 5
 
 
 
