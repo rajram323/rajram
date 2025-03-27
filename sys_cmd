@@ -3382,12 +3382,65 @@ ppt - select loop
 	you picked the right one
 	selection completed with 5
 
+### week 8 ###
+### w8-lec 1 ### https://www.youtube.com/watch?v=kWid87j6qIE&t=1s ###
+ppt - automating scripts
+ppt - cron
+ppt - job defination
+ppt - start acript
+ -  mkdir backup
+-  ls
+	backup  select-example.sh
+-  cd backup/
+	- /backup$ vi mkbackup.sh
+	- /backup$ touch mkbackup.log
+	- /backup$ more mkbackup.sh
+	#!/bin/bash
+	BFILE=/home/ubuntu/backup/mkbackup.log
+	echo "starting backup automatically..." >> $BFILE
+	date >> $BFILE
+	echo "backup process completed" >> $BFILE
+	echo "------------------------" >> $BFILE
+	- /backup$ ls -l
+	total 4
+	-rw-rw-r-- 1 ubuntu ubuntu   0 Mar 27 02:47 mkbackup.log
+	-rw-rw-r-- 1 ubuntu ubuntu 200 Mar 27 02:46 mkbackup.sh
+- /backup$ chmod 755 mkbackup.sh
+- /backup$ ./mkbackup.sh 
+- /backup$ ls -l
+	total 8
+	-rw-rw-r-- 1 ubuntu ubuntu 112 Mar 27 02:49 mkbackup.log
+	-rwxr-xr-x 1 ubuntu ubuntu 200 Mar 27 02:46 mkbackup.sh
+- /backup$ cat mkbackup.log
+	starting backup automatically...
+	Thu Mar 27 02:49:03 UTC 2025
+	backup process completed
+	------------------------
+- /backup$ date
+	Thu Mar 27 02:49:22 UTC 2025
+- /backup$ 
 
-
-
-
-
-
+-  mkdir backup
+-  vi mkbackup.sh
+-  touch nkbackup.log
+-  chmod 755 mkbackup.sh
+-  ls -lh
+	total 8.0K
+	drwxrwxr-x 2 ubuntu ubuntu 4.0K Mar 27 02:52 backup
+-rwxr-xr-x 1 ubuntu ubuntu  200 Mar 27 02:53 mkbackup.sh
+-rw-rw-r-- 1 ubuntu ubuntu    0 Mar 27 02:53 nkbackup.log
+-  crontab -e
+	bash: crontab: command not found run in ubuntu
+	in crontab put - 28 * * * * cd /home/ubuntu/backup && ./mkbackup.sh
+- run the below command in ubuntu
+	- /etc$ more crontab
+	- /etc$ cd cron.daily
+	- /etc$ cd cron.hourly 
+		- ls -l			(to see what is running hourly)
+	- /etc$ cd cron.weekly
+	- /etc$ cd cron.monthly
+to entry
+- crontab -e	
 
 
 
